@@ -24,17 +24,20 @@ salvarButton.addEventListener('click', function (event) {
   const precoProd = document.querySelector('#input_preco').value;
   const descricaoProd = document.querySelector('#input_desc').value;
   const tipoProd = document.querySelector('#input_tipo').value;
+  // const dataCadastroProduto = new Date();
 
   console.log('Nome:', nomeProd);
   console.log('Preço:', precoProd);
   console.log('Descrição:', descricaoProd);
   console.log('Tipo:', tipoProd);
+  // console.log('Data de Cadastro:', dataCadastroProduto);
 
   addDoc(collectionProdutos, {
     desc: descricaoProd,
     nome: nomeProd,
     preco: precoProd,
-    tipo: tipoProd
+    tipo: tipoProd,
+    // dataCadastro: dataCadastroProduto
   })
   .then(doc => console.log('Document criado com o ID', doc.id))
   .catch(console.log)
@@ -42,8 +45,6 @@ salvarButton.addEventListener('click', function (event) {
     getFuncionarios()
   })
 })
-
-
 
 async function getFuncionarios(){
   let id=0;
