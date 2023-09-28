@@ -5,7 +5,7 @@ Aplicativo onde será inserido os dados para criar dinamicamente no cardápio os
 Requer node.js
 
 Primeiro passo:
-No terminal dentro da pasta app, fora da src
+No terminal dentro da segunda pasta app, fora da pasta src
 Digite: npm install
 
 Segundo passo:
