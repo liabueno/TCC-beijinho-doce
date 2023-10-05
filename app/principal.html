@@ -47,15 +47,19 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-3 mt-3">
+                        <label>Nome</label>
                         <input type="text" id="input_nome" class="form-control"  placeholder="Informe o nome" required>
                     </div>
                     <div class="mb-3 mt-3">
+                        <label>Preço</label>
                         <input type="number" id="input_preco" class="form-control"  placeholder="Informe o preço" required>
                     </div>
                     <div class="mb-3 mt-3">
+                        <label>Descrição</label>
                         <input type="text" id="input_desc" class="form-control" placeholder="Informe a descrição" required>
                     </div>
                     <div class="mb-3 mt-3">
+                        <label>Categoria</label>
                         <select id="input_tipo" name="tipo">
                             <option value="bolos">Bolos</option>
                             <option value="chocolateria">Chocolateria</option>
@@ -63,6 +67,10 @@
                             <option selected>Selecione uma opção</option>
                         </select>
                     </div>
+                    <div class="mb-3 mt-3">
+                      <label>Imagem</label>
+                      <input type="file"  accept="image/*" id="input_image" class="form-control" placeholder="Insira a imagem" required>
+                  </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -81,7 +89,8 @@
               <th scope="col">Preço</th>
               <th scope="col">Descrição</th>
               <th scope="col">Tipo</th>
-
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody id="tabela">

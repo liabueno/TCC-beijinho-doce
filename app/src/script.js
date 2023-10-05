@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js';
-import { getFirestore, collection, addDoc, query, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
+import { getFirestore, collection, addDoc, query, getDocs , orderBy} from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA5DWm_hrQPn8RyxGu-ZhnbDHCvdxxG7MQ',
@@ -14,7 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 const collectionProdutos = collection(db, 'produtos')
-getFuncionarios();
+getProdutos()
   
 const salvarButton = document.querySelector('#salvar');
 salvarButton.addEventListener('click', function (event) {
@@ -24,33 +24,36 @@ salvarButton.addEventListener('click', function (event) {
   const precoProd = document.querySelector('#input_preco').value;
   const descricaoProd = document.querySelector('#input_desc').value;
   const tipoProd = document.querySelector('#input_tipo').value;
-  // const dataCadastroProduto = new Date();
+  const imageProd = document.querySelector('#input_image').value;
+  const dataCadastroProduto = new Date();
 
   console.log('Nome:', nomeProd);
   console.log('Preço:', precoProd);
   console.log('Descrição:', descricaoProd);
   console.log('Tipo:', tipoProd);
-  // console.log('Data de Cadastro:', dataCadastroProduto);
+  console.log('Data de Cadastro:', dataCadastroProduto);
+  console.log('Imagem:', imageProd);
 
   addDoc(collectionProdutos, {
     desc: descricaoProd,
     nome: nomeProd,
     preco: precoProd,
     tipo: tipoProd,
-    // dataCadastro: dataCadastroProduto
+    image: imageProd,
+    dataCadastro: dataCadastroProduto
   })
   .then(doc => console.log('Document criado com o ID', doc.id))
   .catch(console.log)
   .finally(()=>{
-    getFuncionarios()
+    getProdutos()
   })
 })
 
-async function getFuncionarios(){
+async function getProdutos(){
   let id=0;
   let listagens = document.getElementById('tabela');
   listagens.innerHTML = "";
-  const produtosListagem = query(collectionProdutos);
+  const produtosListagem = query(collectionProdutos, orderBy("dataCadastro", "asc"));
   const querySnapshot = await getDocs(produtosListagem);
   querySnapshot.forEach((doc) => {
     if (doc.data().nome !== "") {
@@ -62,7 +65,9 @@ async function getFuncionarios(){
         <td>${doc.data().preco}</td>
         <td>${doc.data().desc}</td>
         <td>${doc.data().tipo}</td>
-      `;
+        <td><button type="button" class="btn btn-secondary"><i class="bi bi-pencil"></i></button></td>
+        <td><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+        `;
       listagens.appendChild(newRow);
     }
   });
