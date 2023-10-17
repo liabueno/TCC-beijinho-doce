@@ -1,0 +1,21 @@
+body{
+    background-color: #FFDAF9;
+}
+
+img{
+    margin-top: 50px;
+}
+
+.btn{
+    background-color: #aa386f;
+    border: #aa386f;
+    margin-top: 30px;
+    width: 20vw;
+    height: 8vh;
+    text-align: center;
+}
+
+.btn:hover{
+  background-color: rgb(238, 124, 145);
+}
+
