@@ -7,9 +7,20 @@ body{
     background-color: #f5cad0;
 }
 
-#botao__pesquisar{
+header{
+    background-color: #aa386f;
+    height: 9vh;
+}
+
+#botao__pesquisar, #botao__voltar{
     border: none;
     background: none;
+}
+
+#botao__voltar, .voltar{
+    height: 4vh;
+    width: 3vw;
+    margin-top: 3px;
 }
 
 #input_produto{
@@ -20,9 +31,9 @@ body{
     /* color:palevioletred; */
 }
 
-.pesquisar:focus{
+/* .pesquisar:focus{
     box-shadow: palevioletred;
-}
+} */
 
 #input_tipo{
     margin-left: 10px;
@@ -30,9 +41,10 @@ body{
 }
 
 #botao__cadastrar{
-    margin-right: 6px;
+    margin-right: 15px;
     background-color: #d6808cef;
     border: #d6808cef;
+    margin-bottom: 6px;
 }
 
 #salvar{

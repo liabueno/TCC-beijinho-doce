@@ -2,6 +2,11 @@ body{
     background-color: #FFDAF9;
 }
 
+header{
+    background-color: #aa386f;
+    height: 9vh;
+}
+
 img{
     margin-top: 50px;
 }
