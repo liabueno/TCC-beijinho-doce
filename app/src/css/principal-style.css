@@ -15,7 +15,18 @@ body{
 #input_produto{
     width: 60vw;
     height: 8vh;
-    /* background-color: rgb(241, 221, 221);; */
+    /* background-color: rgb(241, 221, 221); */
+    /* border: palevioletred; */
+    /* color:palevioletred; */
+}
+
+.pesquisar:focus{
+    box-shadow: palevioletred;
+}
+
+#input_tipo{
+    margin-left: 10px;
+    margin-top: 13px;
 }
 
 #botao__cadastrar{
@@ -38,5 +49,6 @@ body{
 .lapis, .excluir{
     width: 2vw;
     height: 3vh;
+    margin-bottom: 4px;
 }
 

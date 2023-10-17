@@ -12,5 +12,8 @@
     "electron": "^26.2.2",
     "electron-builder": "^24.6.4"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "bootstrap-icons": "^1.11.1"
+  }
 }

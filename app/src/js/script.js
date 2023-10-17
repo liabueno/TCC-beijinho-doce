@@ -16,9 +16,36 @@ const db = getFirestore(app)
 const collectionProdutos = collection(db, 'produtos')
 await getProdutos()
 
+
+async function codificarImagemEmBase64(img){
+  return new Promise((resolve, reject) => {
+    try {
+      let imageBase64;
+      if (inputImageElement.files.length > 0) { // Verifique se um arquivo foi selecionado
+        const file = inputImageElement.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          imageBase64 = e.target.result.split(',')[1]; 
+          console.log('Imagem codificada em base64:', imageBase64);
+          reader.readAsDataURL(file);
+          resolve(imageBase64)
+        }
+      } else {
+        console.log('Caminho da Imagem não encontrado!');
+        imageBase64 = ""; 
+        resolve(imageBase64)
+      }
+
+
+    } catch (error) {
+      resolve({error: true})
+    }
+  })
+}
+
   
 const salvarButton = document.querySelector('#salvar');
-salvarButton.addEventListener('click', function (event) {
+salvarButton.addEventListener('click', async function(event) {
   event.preventDefault();
 
   const nomeProd = document.querySelector('#input_nome').value;
@@ -27,26 +54,19 @@ salvarButton.addEventListener('click', function (event) {
   const tipoProd = document.querySelector('#input_tipo').value;
   const inputImageElement = document.querySelector('#input_image'); // Seletor do input de arquivo
   const dataCadastroProduto = new Date();
-  let imageBase64;
+  let imagemCodificada;
 
-    if (inputImageElement.files.length > 0) { // Verifique se um arquivo foi selecionado
-      const file = inputImageElement.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        imageBase64 = e.target.result.split(',')[1]; 
-        console.log('Imagem codificada em base64:', imageBase64);
-        reader.readAsDataURL(file);
-      }
-    } else {
-      imageBase64 = ""; 
-    }
+    await codificarImagemEmBase64(inputImageElement)
+    .then(response => {
+      imagemCodificada = response
+    })
 
     addDoc(collectionProdutos, {
       desc: descricaoProd,
       nome: nomeProd,
       preco: precoProd,
       tipo: tipoProd,
-      image: imageBase64, 
+      image: imagemCodificada, 
       dataCadastro: dataCadastroProduto
     })
     .then(doc => console.log('Documento criado com o ID', doc.id))
@@ -114,7 +134,8 @@ inputProduto.addEventListener('keypress', function (event) {
   }
 });
 
-async function pesquisarNoFirestore(termo) {
+async function pesquisarNoFirestore(palavraRecebida) {
+  let termo = palavraRecebida.charAt(0).toUpperCase() + palavraRecebida.slice(1).toLowerCase();
   console.log(termo)
   const pesquisaQuery = query(
     collectionProdutos,
@@ -157,8 +178,12 @@ async function getProdutos(){
         <td>${doc.data().preco}</td>
         <td>${doc.data().desc}</td>
         <td>${doc.data().tipo}</td>
-        <td><center><button type="button" class="btn btn-secondary funcoes"><img src="./src/image/lapis.png" class="lapis"></button></center></td>
-        <td><center><button type="button" class="btn btn-danger delete-button funcoes" data-product-id="${doc.id}" data-product-name="${doc.data().nome}"><img src="./src/image/excluir.png" class="excluir"></button></center></td>
+        <td><center><button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill lapis" viewBox="0 0 16 16">
+        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+      </svg></button></center></td>
+        <td><center><button type="button" class="btn btn-danger delete-button" data-product-id="${doc.id}" data-product-name="${doc.data().nome}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill excluir" viewBox="0 0 16 16">
+        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+      </svg></button></center></td>
         `;
       listagens.appendChild(newRow);
     }

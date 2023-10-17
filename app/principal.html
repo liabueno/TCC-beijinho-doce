@@ -23,7 +23,7 @@
         <div class="col-12 d-flex justify-content-center align-items-center">
             <form>
                 <div class="mb-3 mt-3">
-                  <input id="input_produto" class="form-control" aria-describedby="emailHelp" placeholder="Pesquisar Produto">
+                  <input id="input_produto" class="form-control pesquisar" aria-describedby="emailHelp" placeholder="Pesquisar Produto">
                 </div>
             </form>
 
@@ -36,7 +36,7 @@
             <button type="button"  id="botao__cadastrar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">+ Cadastrar Produto</button>        
         </div>
     </div>
-    
+    <!-- MODAL CADASTRAR -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -54,11 +54,11 @@
                         <label>Preço</label>
                         <input type="number" id="input_preco" class="form-control"  placeholder="Informe o preço" required>
                     </div>
-                    <div class="mb-3 mt-3">
+                    <div class="mb-3 mt-2">
                         <label>Descrição</label>
                         <input type="text" id="input_desc" class="form-control" placeholder="Informe a descrição" required>
                     </div>
-                    <div class="mb-3 mt-3">
+                    <div class="mb-2 mt-3">
                         <label>Categoria</label>
                         <select id="input_tipo" name="tipo">
                             <option value="bolos">Bolos</option>
@@ -68,7 +68,7 @@
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
-                      <label>Imagem</label>
+                      <label class="mb-2">Imagem</label>
                       <input type="file"  accept="image/*" id="input_image" class="form-control" placeholder="Insira a imagem" required>
                   </div>
                 </form>
@@ -80,6 +80,51 @@
           </div>
         </div>
       </div>
+
+      <!-- MODAL ATUALIZAR -->
+      <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Atualizar Cadastro</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3 mt-3">
+                        <label>Nome</label>
+                        <input type="text" id="input_nome" class="form-control"  placeholder="Informe o nome" required>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>Preço</label>
+                        <input type="number" id="input_preco" class="form-control"  placeholder="Informe o preço" required>
+                    </div>
+                    <div class="mb-3 mt-2">
+                        <label>Descrição</label>
+                        <input type="text" id="input_desc" class="form-control" placeholder="Informe a descrição" required>
+                    </div>
+                    <div class="mb-2 mt-3">
+                        <label>Categoria</label>
+                        <select id="input_tipo" name="tipo">
+                            <option value="bolos">Bolos</option>
+                            <option value="chocolateria">Chocolateria</option>
+                            <option value="kits">Kits</option>
+                            <option selected>Selecione uma opção</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 mt-3">
+                      <label class="mb-2">Imagem</label>
+                      <input type="file"  accept="image/*" id="input_image" class="form-control" placeholder="Insira a imagem" required>
+                  </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="fechar">Fechar</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="salvar">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
 
       <table class="table table-striped mt-3">
         <thead>
@@ -103,5 +148,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+<!-- MUDAR A COR DO BOTÃO ROXO 
+ver a sombra azul-->
 </body>
 </html>
