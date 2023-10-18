@@ -20,6 +20,11 @@
 <body>
     <header>
       <a href="./index.html"><button type="button" id="botao__voltar" class="btn btn-primary"><img src="./src/image/voltar.png" alt="ícone de voltar" class="voltar"></button></a>        
+      <button class="btn-fechar" onclick="fecharJanela()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+          </svg>
+      </button>
     </header>
     
     <div class="row">
@@ -151,6 +156,7 @@
 
 
     <script type="module" src="./src/js/script.js"></script>
+    <script src="./src/js/fechar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>

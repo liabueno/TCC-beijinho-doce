@@ -16,7 +16,6 @@ const db = getFirestore(app)
 const collectionProdutos = collection(db, 'produtos')
 await getProdutos()
 
-
 async function codificarImagemEmBase64(img){
   return new Promise((resolve, reject) => {
     try {
@@ -197,7 +196,6 @@ async function getProdutos(){
 
 
 
-
 // Fora da função getProdutos(), adicione o event listener para os botões de exclusão
 document.addEventListener('click', function (event) {
   if (event.target.classList.contains('delete-button')) {
@@ -212,7 +210,7 @@ document.addEventListener('click', function (event) {
 function confirmarExclusao(id, nome) {
   Swal.fire({
     title: 'Tem certeza?',
-    text: `O produto "${nome}" será excluído permanentemente.`,
+    text: `O produto "${nome}" será excluído permanentemente`,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Sim, excluir!',
@@ -223,20 +221,6 @@ function confirmarExclusao(id, nome) {
     }
   });
 }
-
-
-// async function excluirProduto(id) {
-//   try {
-//     // Use o Firebase Firestore para excluir o produto pelo ID
-//     await deleteDoc(doc(db, 'produtos', id));
-//     Swal.fire('Sucesso!', 'Produto excluído com sucesso!', 'success');
-//     // Atualize a lista de produtos após a exclusão
-//     getProdutos();
-//   } catch (error) {
-//     console.error('Erro ao excluir o produto:', error);
-//     Swal.fire('Erro!', 'Ocorreu um erro ao excluir o produto.', 'error');
-//   }
-// }
 
 async function excluirProduto(id) {
   try {
@@ -250,7 +234,6 @@ async function excluirProduto(id) {
     Swal.fire('Erro!', 'Ocorreu um erro ao excluir o produto.', 'error');
   }
 }
-
 
 
 

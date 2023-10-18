@@ -18,9 +18,21 @@ header{
 }
 
 #botao__voltar, .voltar{
+    height: 3vh;
+    width: 2vw;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+.btn-fechar{
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
     height: 5vh;
     width: 4vw;
-    margin-top: 3px;
+    margin-top: 10px;
+    margin-right: 5px;
 }
 
 #botao__pesquisar{

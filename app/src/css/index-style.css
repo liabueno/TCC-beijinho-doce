@@ -24,3 +24,14 @@ img{
   background-color: rgb(238, 124, 145);
 }
 
+.btn-fechar{
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    height: 5vh;
+    width: 4vw;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
