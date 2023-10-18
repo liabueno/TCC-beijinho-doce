@@ -25,6 +25,7 @@ header{
     left: 0;
     position: absolute;
 }
+
 .btn-fechar {
     background: none;
     border: none;
@@ -58,14 +59,7 @@ header{
     margin-top: 45px;
     width: 60vw;
     height: 8vh;
-    /* background-color: rgb(241, 221, 221); */
-    /* border: palevioletred; */
-    /* color:palevioletred; */
 }
-
-/* .pesquisar:focus{
-    box-shadow: palevioletred;
-} */
 
 #input_tipo{
     margin-left: 10px;
@@ -74,24 +68,37 @@ header{
 
 #botao__cadastrar, .mais{
     margin-bottom: 8px;
-    margin-right: 70px;
 }
 
 #botao__cadastrar{
     background-color: #d6808cef;
     border: #d6808cef;
     width: 5vw;
-    height: 7vh;
+    height: 5vh;
+    margin-right: 20px;
 }
 
 .mais{
-    width: 2.6vw;
-    height: 4.6vh;
+    width: 2.3vw;
+    height: 3.3vh;
 }
 
+/* .btn-excluir:hover{
+    background-color: #7066E0;
+    border: #7066E0;
+}
+
+.btn-atualizar:hover{
+    background-color: #0070BB;
+    border: #0070BB;
+
+
+    btn-danger
+} */
+
 #salvar{
-    background-color: rgb(104, 212, 104);
-    border: rgb(104, 212, 104);
+    background-color: rgb(84, 165, 84);
+    border: rgb(84, 165, 84);
 }
 
 #fechar{
@@ -99,10 +106,19 @@ header{
     border: #808080;
 }
 
-
-.lapis, .excluir{
-    width: 2vw;
-    height: 3vh;
-    margin-bottom: 4px;
+/* .btn-excluir{
+    --background: none;
 }
+.lapis, .excluir{
+    width: 1vw;
+    height: 2vh;
+    margin-bottom: 4px;
+
+
+
+    tirar o fundo do botao
+    aumentar o tam do botao
+    ver o botao de mais
+  
+} */
 
