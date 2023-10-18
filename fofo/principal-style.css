@@ -1,0 +1,108 @@
+body{
+    margin: 0;
+    padding:0;
+    border-spacing: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #f5cad0;
+}
+
+header{
+    background-color: #aa386f;
+    height: 9vh;
+}
+
+#botao__pesquisar, #botao__voltar{
+    border: none;
+    background: none;
+}
+
+#botao__voltar, .voltar{
+    height: 3vh;
+    width: 2vw;
+    margin-top: 5px;
+    margin-left: 5px;
+    left: 0;
+    position: absolute;
+}
+.btn-fechar {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    height: 5vh;
+    width: 4vw;
+    margin-top: 10px;
+    margin-right: 5px;
+    display: inline-block; 
+}
+
+.btn-resizable {
+    background: none;
+    border: none;
+    position: absolute;
+    height: 5vh;
+    width: 4vw;
+    margin-top: 10px;
+    margin-right: 5px;
+    display: inline-block; 
+    right: 0;
+    margin-right: 50px;
+}
+
+#botao__pesquisar{
+    margin-top: 35px;
+}
+
+#input_produto{
+    margin-top: 45px;
+    width: 60vw;
+    height: 8vh;
+    /* background-color: rgb(241, 221, 221); */
+    /* border: palevioletred; */
+    /* color:palevioletred; */
+}
+
+/* .pesquisar:focus{
+    box-shadow: palevioletred;
+} */
+
+#input_tipo{
+    margin-left: 10px;
+    margin-top: 13px;
+}
+
+#botao__cadastrar, .mais{
+    margin-bottom: 8px;
+    margin-right: 70px;
+}
+
+#botao__cadastrar{
+    background-color: #d6808cef;
+    border: #d6808cef;
+    width: 5vw;
+    height: 7vh;
+}
+
+.mais{
+    width: 2.6vw;
+    height: 4.6vh;
+}
+
+#salvar{
+    background-color: rgb(104, 212, 104);
+    border: rgb(104, 212, 104);
+}
+
+#fechar{
+    background-color: #808080;
+    border: #808080;
+}
+
+
+.lapis, .excluir{
+    width: 2vw;
+    height: 3vh;
+    margin-bottom: 4px;
+}
+
