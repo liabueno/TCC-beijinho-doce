@@ -1,3 +1,0 @@
-function fecharJanela() {
-    window.close();
-}

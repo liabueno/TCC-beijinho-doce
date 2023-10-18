@@ -8,7 +8,7 @@ header{
 }
 
 img{
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .btn{
@@ -24,7 +24,7 @@ img{
   background-color: rgb(238, 124, 145);
 }
 
-.btn-fechar{
+.btn-fechar {
     background: none;
     border: none;
     position: absolute;
@@ -33,5 +33,5 @@ img{
     width: 4vw;
     margin-top: 10px;
     margin-right: 5px;
+    display: inline-block; 
 }
-

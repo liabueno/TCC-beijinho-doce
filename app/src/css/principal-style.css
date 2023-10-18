@@ -20,11 +20,12 @@ header{
 #botao__voltar, .voltar{
     height: 3vh;
     width: 2vw;
-    margin-top: 3px;
-    margin-right: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    left: 0;
+    position: absolute;
 }
-
-.btn-fechar{
+.btn-fechar {
     background: none;
     border: none;
     position: absolute;
@@ -33,6 +34,20 @@ header{
     width: 4vw;
     margin-top: 10px;
     margin-right: 5px;
+    display: inline-block; 
+}
+
+.btn-resizable {
+    background: none;
+    border: none;
+    position: absolute;
+    height: 5vh;
+    width: 4vw;
+    margin-top: 10px;
+    margin-right: 5px;
+    display: inline-block; 
+    right: 0;
+    margin-right: 50px;
 }
 
 #botao__pesquisar{
