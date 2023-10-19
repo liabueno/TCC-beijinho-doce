@@ -126,3 +126,7 @@ header{
     border: 1px solid gray;
     border-radius: 2px;
 }
+
+#show_id_atualizar{
+    display: none;
+}

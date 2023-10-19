@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js';
-import { getFirestore, collection, addDoc, query, getDocs , orderBy, doc, deleteDoc, where } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
+import { getFirestore, collection, addDoc, query, getDocs , orderBy, doc, deleteDoc, where, updateDoc } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA5DWm_hrQPn8RyxGu-ZhnbDHCvdxxG7MQ',
@@ -190,7 +190,7 @@ async function getProdutos(){
         <td>${doc.data().tipo}</td>
         <td>
           <center>
-                <img src="./src/image/pencil.svg" class="btn update-button pencil-icon" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
+                <img src="./src/image/pencil.svg" class="btn update-button pencil-icon" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
           </center>
         </td>
 
@@ -222,6 +222,7 @@ document.addEventListener('click', async function (event) {
       document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
       document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
       document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
+      document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
   }
 });
 
@@ -256,4 +257,47 @@ async function excluirProduto(id) {
 }
 
 
-function atualizarProduto()
+const updateButton = document.querySelector('#atualizar');
+updateButton.addEventListener('click', async function(event) {
+  event.preventDefault();
+
+  const idProduto = document.getElementById('show_id_atualizar').textContent;
+  const nomeProd = document.querySelector('#input_nome_atualizar').value;
+  const precoProd = document.querySelector('#input_preco_atualizar').value;
+  const descricaoProd = document.querySelector('#input_desc_atualizar').value;
+  const tipoProd = document.querySelector('#input_tipo_atualizar').value;
+  const inputImageElement = document.querySelector('#input_image_atualizar'); // Seletor do input de arquivo
+  let imagemCodificada;
+
+    await codificarImagemEmBase64(inputImageElement)
+    .then(response => {
+      imagemCodificada = response
+    })
+
+    console.log('Id: ' + idProduto);
+    console.log('Nome: ' + nomeProd);
+    console.log('Desc: ' + descricaoProd);
+    console.log('Preco: ' + precoProd);
+    console.log('Tipo:  ' + tipoProd);
+
+    await updateDoc(doc(db, "produtos", idProduto), {
+      desc: descricaoProd,
+      nome: nomeProd,
+      preco: precoProd,
+      tipo: tipoProd,
+      image: imagemCodificada
+    })
+    .then(() => console.log('Documento atualizado'))
+    .then(() => {
+      document.getElementById('#input_nome_atualizar').value = " ";
+      document.getElementById('#input_preco_atualizar').value =  " ";
+      document.getElementById('#input_desc_atualizar').value = " ";
+      document.getElementById('#input_tipo_atualizar').value = " ";
+      document.getElementById('#input_image_atualizar').value = " "; // Seletor do input de arquivo
+    })
+    .catch(console.log)
+    .finally(() => {
+      getProdutos()
+    });
+    
+});
