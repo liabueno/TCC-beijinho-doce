@@ -82,12 +82,12 @@
                             <option value="bolos">Bolos</option>
                             <option value="chocolateria">Chocolateria</option>
                             <option value="kits">Kits</option>
-                            <option selected>Selecione uma opção</option>
+                            <option id="opcao_padrao" selected>Selecione uma opção</option>
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
                       <label>Imagem</label>
-                      <input type="file"  accept="image/*" id="input_image" class="form-control" placeholder="Insira a imagem" required>
+                      <input type="file" accept="image/*" id="input_image" class="form-control" placeholder="Insira a imagem" required>
                   </div>
                 </form>
             </div>
@@ -135,6 +135,7 @@
                         <div class="mb-3 mt-3">
                             <label>Imagem</label>
                             <input type="file" accept="image/*" id="input_image_atualizar" class="form-control" placeholder="Insira a imagem" required>
+                            <img src="" id="show_image_atualizar">
                         </div>
                     </form>
                 </div>

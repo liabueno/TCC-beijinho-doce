@@ -16,31 +16,50 @@ const db = getFirestore(app)
 const collectionProdutos = collection(db, 'produtos')
 await getProdutos()
 
-async function codificarImagemEmBase64(img){
+async function codificarImagemEmBase64(inputImageElement) {
   return new Promise((resolve, reject) => {
     try {
-      let imageBase64;
-      if (inputImageElement.files.length > 0) { // Verifique se um arquivo foi selecionado
+      if (inputImageElement.files.length > 0) {
         const file = inputImageElement.files[0];
         const reader = new FileReader();
+
         reader.onload = (e) => {
-          imageBase64 = e.target.result.split(',')[1]; 
+          const imageBase64 = e.target.result.split(',')[1];
           console.log('Imagem codificada em base64:', imageBase64);
-          reader.readAsDataURL(file);
-          resolve(imageBase64)
+          resolve(imageBase64);
         }
+
+        reader.readAsDataURL(file); // Certifique-se de chamar readAsDataURL aqui.
       } else {
         console.log('Caminho da Imagem não encontrado!');
-        imageBase64 = ""; 
-        resolve(imageBase64)
+        const imageBase64 = "";
+        resolve(imageBase64);
       }
-
-
     } catch (error) {
-      resolve({error: true})
+      console.error(error);
+      resolve({ error: true });
     }
-  })
+  });
 }
+
+
+async function decodificarImagemBase64(imageBase64) {
+  return new Promise((resolve, reject) => {
+    try {
+      if (imageBase64) {
+        const decodedImageData = atob(imageBase64);
+        resolve(decodedImageData);
+      } else {
+        console.log('Imagem base64 vazia.');
+        resolve('');
+      }
+    } catch (error) {
+      console.error('Erro ao decodificar a imagem base64:', error);
+      resolve({ error: true });
+    }
+  });
+}
+
 
   
 const salvarButton = document.querySelector('#salvar');
@@ -51,35 +70,48 @@ salvarButton.addEventListener('click', async function(event) {
   const precoProd = document.querySelector('#input_preco').value;
   const descricaoProd = document.querySelector('#input_desc').value;
   const tipoProd = document.querySelector('#input_tipo').value;
-  const inputImageElement = document.querySelector('#input_image'); // Seletor do input de arquivo
+  const inputImageElement = document.querySelector('#input_image');
   const dataCadastroProduto = new Date();
   let imagemCodificada;
+  let produtoParaCadastrar
 
     await codificarImagemEmBase64(inputImageElement)
     .then(response => {
       imagemCodificada = response
     })
-
-    addDoc(collectionProdutos, {
-      desc: descricaoProd,
-      nome: nomeProd,
-      preco: precoProd,
-      tipo: tipoProd,
-      image: imagemCodificada, 
-      dataCadastro: dataCadastroProduto
-    })
-    .then(doc => console.log('Documento criado com o ID', doc.id))
     .then(() => {
-      document.getElementById('#input_nome').value = " ";
-      document.getElementById('#input_preco').value =  " ";
-      document.getElementById('#input_desc').value = " ";
-      document.getElementById('#input_tipo').value = " ";
-      document.getElementById('#input_image').value = " "; // Seletor do input de arquivo
+      produtoParaCadastrar = {
+        dataCadastro: dataCadastroProduto,
+        desc: descricaoProd,
+        nome: nomeProd,
+        preco: precoProd,
+        tipo: tipoProd
+      }
+  
+      if(imagemCodificada.error==true){
+        produtoParaCadastrar.image = " ";
+      }
+      else{
+        produtoParaCadastrar.image = imagemCodificada
+      }
+
     })
-    .catch(console.log)
-    .finally(() => {
-      getProdutos()
-    });
+    .then(() => {
+      addDoc(collectionProdutos, produtoParaCadastrar)
+      .then(doc => console.log('Documento criado com o ID', doc.id))
+      .then(() => {
+        document.getElementById('input_nome').value = "";
+        document.getElementById('input_preco').value =  "";
+        document.getElementById('input_desc').value = "";
+        document.getElementById('opcao_padrao').selected = true;
+        document.getElementById('input_image').value = "";
+
+      })
+      .catch(console.log)
+      .finally(() => {
+        getProdutos()
+      });
+    })
     
 });
 
@@ -111,8 +143,7 @@ function atualizarTabela(produtos) {
       </center>
     </td>
     `;
-    // <td><center><button type="button" class="btn btn-secondary btn-atualizar"></button></center></td>
-    // <td><center><button type="button" class="btn btn-danger delete-button btn-excluir" data-product-id="${produto.id}" data-product-name="${produto.nome}"></button></center></td>
+
     listagens.appendChild(newRow);
   });
 }
@@ -211,7 +242,6 @@ async function getProdutos(){
 
 // Fora da função getProdutos(), adicione o event listener para os botões de exclusão
 document.addEventListener('click', async function (event) {
-  console.log(event.target.classList)
   if (event.target.classList.contains('delete-button')) {
     const productId = event.target.getAttribute('data-product-id');
     const productName = event.target.getAttribute('data-product-name');
@@ -223,9 +253,34 @@ document.addEventListener('click', async function (event) {
       document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
       document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
       document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
+      
+      await decodificarImagemBase64(event.target.getAttribute('data-product-image'))
+      .then((response) => {
+        // document.getElementById('input_image_atualizar') = response;
+        let imagemCodificada = event.target.getAttribute('data-product-image');
+        document.getElementById('show_image_atualizar').src = `data:image/png;base64,${imagemCodificada}`;
+      })
   }
 });
 
+
+const inputElement = document.getElementById('input_image_atualizar');
+
+inputElement.addEventListener('change', function() {
+  const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
+  document.getElementById('show_image_atualizar').src = selectedFile.path;
+  }
+);
+
+
+// ID DO ICONE DA LIXEIRA DEVE SER lixeira_imagem
+const lixeiraImagem = document.getElementById('lixeira_imagem');
+
+lixeiraImagem.addEventListener('click', function() {
+  const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
+  document.getElementById('show_image_atualizar').src = selectedFile.path;
+  }
+);
 
 
 function confirmarExclusao(id, nome) {
@@ -280,20 +335,29 @@ updateButton.addEventListener('click', async function(event) {
     console.log('Preco: ' + precoProd);
     console.log('Tipo:  ' + tipoProd);
 
-    await updateDoc(doc(db, "produtos", idProduto), {
+    let produtosAtualizado = {
       desc: descricaoProd,
       nome: nomeProd,
       preco: precoProd,
-      tipo: tipoProd,
-      image: imagemCodificada
-    })
+      tipo: tipoProd
+    }
+    console.log(imagemCodificada);
+    if(!(imagemCodificada.error)){
+      produtosAtualizado.image = imagemCodificada
+    }
+    else{
+      produtosAtualizado.image = " ";
+    }
+
+    await updateDoc(doc(db, "produtos", idProduto), produtosAtualizado)
     .then(() => console.log('Documento atualizado'))
     .then(() => {
-      document.getElementById('#input_nome_atualizar').value = " ";
-      document.getElementById('#input_preco_atualizar').value =  " ";
-      document.getElementById('#input_desc_atualizar').value = " ";
-      document.getElementById('#input_tipo_atualizar').value = " ";
-      document.getElementById('#input_image_atualizar').value = " "; // Seletor do input de arquivo
+      document.getElementById('input_nome_atualizar').value = "";
+      document.getElementById('input_preco_atualizar').value =  "";
+      document.getElementById('input_desc_atualizar').value = "";
+      document.getElementById('opcao_padrao').selected = true;
+      document.getElementById('input_image_atualizar').value = ""; 
+      document.getElementById('show_id_atualizar').innerHTML = " "
     })
     .catch(console.log)
     .finally(() => {
