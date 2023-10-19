@@ -117,3 +117,12 @@ header{
     height: 2vh;  
 } */
 
+.trash-icon{
+    border: 1px solid red;
+    border-radius: 2px;
+}
+
+.update-button{
+    border: 1px solid gray;
+    border-radius: 2px;
+}

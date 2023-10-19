@@ -27,7 +27,7 @@
             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
           </svg>
       </button>
-
+      
     </header>
     
     <div class="row">
@@ -42,6 +42,7 @@
         </div>
     </div>
 
+    <!-- BOTAO CADASTRAR -->
     <div class="row">
         <div class="col-12 text-end mt-3">
             <button type="button"  id="botao__cadastrar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -51,6 +52,8 @@
             </button>
         </div>
     </div>
+
+
     <!-- MODAL CADASTRAR -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -96,50 +99,52 @@
         </div>
       </div>
 
+      
+
       <!-- MODAL ATUALIZAR -->
-      <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="atualizarModal" tabindex="-1" aria-labelledby="atualizarModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Atualizar Cadastro</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="atualizarModalLabel">Atualizar Produto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3 mt-3">
+                            <label>Nome</label>
+                            <input type="text" id="input_nome_atualizar" class="form-control" placeholder="Informe o nome" required>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label>Preço</label>
+                            <input type="number" id="input_preco_atualizar" class="form-control" placeholder="Informe o preço" required>
+                        </div>
+                        <div class="mb-3 mt-2">
+                            <label>Descrição</label>
+                            <input type="text" id="input_desc_atualizar" class="form-control" placeholder="Informe a descrição" required>
+                        </div>
+                        <div class="mb-2 mt-3">
+                            <label>Categoria</label>
+                            <select id="input_tipo_atualizar" name="tipo">
+                                <option value="bolos">Bolos</option>
+                                <option value="chocolateria">Chocolateria</option>
+                                <option value="kits">Kits</option>
+                                <option selected>Selecione uma opção</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label>Imagem</label>
+                            <input type="file" accept="image/*" id="input_image_atualizar" class="form-control" placeholder="Insira a imagem" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="fechar_atualizar">Fechar</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="atualizar">Atualizar</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3 mt-3">
-                        <label>Nome</label>
-                        <input type="text" id="input_nome" class="form-control"  placeholder="Informe o nome" required>
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <label>Preço</label>
-                        <input type="number" id="input_preco" class="form-control"  placeholder="Informe o preço" required>
-                    </div>
-                    <div class="mb-3 mt-2">
-                        <label>Descrição</label>
-                        <input type="text" id="input_desc" class="form-control" placeholder="Informe a descrição" required>
-                    </div>
-                    <div class="mb-2 mt-3">
-                        <label>Categoria</label>
-                        <select id="input_tipo" name="tipo">
-                            <option value="bolos">Bolos</option>
-                            <option value="chocolateria">Chocolateria</option>
-                            <option value="kits">Kits</option>
-                            <option selected>Selecione uma opção</option>
-                        </select>
-                    </div>
-                    <div class="mb-3 mt-3">
-                      <label class="mb-2">Imagem</label>
-                      <input type="file"  accept="image/*" id="input_image" class="form-control" placeholder="Insira a imagem" required>
-                  </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="fechar">Fechar</button>
-              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="salvar">Salvar</button>
-            </div>
-          </div>
         </div>
-      </div> -->
+      </div>
 
       <table class="table table-striped mt-3">
         <thead>

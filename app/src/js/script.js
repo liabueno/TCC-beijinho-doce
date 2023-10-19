@@ -42,6 +42,26 @@ async function codificarImagemEmBase64(img){
   })
 }
 
+
+async function decodificarImagemBase64(imageBase64) {
+  return new Promise((resolve, reject) => {
+    try {
+      if (imageBase64) {
+        const decodedImageData = atob(imageBase64);
+        resolve(decodedImageData);
+      } else {
+        console.log('Imagem base64 vazia.');
+        resolve('');
+      }
+    } catch (error) {
+      console.log(imageBase64)
+      console.error('Erro ao decodificar a imagem base64:', error);
+      resolve({ error: true });
+    }
+  });
+}
+
+
   
 const salvarButton = document.querySelector('#salvar');
 salvarButton.addEventListener('click', async function(event) {
@@ -99,12 +119,17 @@ function atualizarTabela(produtos) {
       <td>${produto.preco}</td>
       <td>${produto.desc}</td>
       <td>${produto.tipo}</td>
-      <td><center><button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-pencil-fill lapis" viewBox="0 0 16 16">
-      <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-    </svg></button></center></td>
-      <td><center><button type="button" class="btn  delete-button btn-excluir" data-product-id="${produto.id}" data-product-name="${produto.nome}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-trash3-fill excluir delete-button" data-product-id="${produto.id}" data-product-name="${produto.nome}" viewBox="0 0 16 16">
-      <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-    </svg></button></center></td>
+      <td>
+      <center>
+          <img src="./src/image/pencil.svg" class="btn update-button" data-product-id="${id}" data-product-name="${produto.nome}">
+      </center>
+    </td>
+
+    <td>
+      <center>
+          <img src="./src/image/trash.svg" class="btn delete-button" data-product-id="${id}" data-product-name="${produto.nome}">
+      </center>
+    </td>
     `;
     // <td><center><button type="button" class="btn btn-secondary btn-atualizar"></button></center></td>
     // <td><center><button type="button" class="btn btn-danger delete-button btn-excluir" data-product-id="${produto.id}" data-product-name="${produto.nome}"></button></center></td>
@@ -183,17 +208,19 @@ async function getProdutos(){
         <td>${doc.data().preco}</td>
         <td>${doc.data().desc}</td>
         <td>${doc.data().tipo}</td>
-        <td><center><button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill lapis" viewBox="0 0 16 16">
-        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-      </svg></button></center></td>
-        <td><center><button type="button" class="btn btn-danger delete-button" data-product-id="${doc.id}" data-product-name="${doc.data().nome}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill excluir delete-button" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" viewBox="0 0 16 16">
-        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-      </svg></button></center></td>
+        <td>
+          <center>
+                <img src="./src/image/pencil.svg" class="btn update-button pencil-icon" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
+          </center>
+        </td>
+
+        <td>
+          <center>
+              <img src="./src/image/trash.svg" class="btn delete-button trash-icon" data-product-id="${doc.id}" data-product-name="${doc.data().nome}">
+          </center>
+        </td>
         `;
 
-        // <td><center><button type="button" class="btn btn-secondary btn-atualizar"></button></center></td>
-        // <td><center><button type="button" class="btn btn-danger delete-button btn-excluir" data-product-id="${doc.id}" data-product-name="${doc.data().nome}">
-        // </button></center></td>
       listagens.appendChild(newRow);
     }
   });
@@ -203,12 +230,18 @@ async function getProdutos(){
 
 
 // Fora da função getProdutos(), adicione o event listener para os botões de exclusão
-document.addEventListener('click', function (event) {
+document.addEventListener('click', async function (event) {
   console.log(event.target.classList)
   if (event.target.classList.contains('delete-button')) {
     const productId = event.target.getAttribute('data-product-id');
     const productName = event.target.getAttribute('data-product-name');
     confirmarExclusao(productId, productName);
+  }
+  else if(event.target.classList.contains('update-button')) {
+      document.getElementById('input_nome_atualizar').value = event.target.getAttribute('data-product-name');
+      document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
+      document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
+      document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
   }
 });
 
