@@ -42,26 +42,6 @@ async function codificarImagemEmBase64(img){
   })
 }
 
-
-async function decodificarImagemBase64(imageBase64) {
-  return new Promise((resolve, reject) => {
-    try {
-      if (imageBase64) {
-        const decodedImageData = atob(imageBase64);
-        resolve(decodedImageData);
-      } else {
-        console.log('Imagem base64 vazia.');
-        resolve('');
-      }
-    } catch (error) {
-      console.log(imageBase64)
-      console.error('Erro ao decodificar a imagem base64:', error);
-      resolve({ error: true });
-    }
-  });
-}
-
-
   
 const salvarButton = document.querySelector('#salvar');
 salvarButton.addEventListener('click', async function(event) {
@@ -276,4 +256,4 @@ async function excluirProduto(id) {
 }
 
 
-
+function atualizarProduto()
