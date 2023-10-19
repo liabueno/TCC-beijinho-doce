@@ -107,18 +107,13 @@ header{
 }
 
 /* .btn-excluir{
-    --background: none;
-}
-.lapis, .excluir{
+    width: 3vw;
+    height: 4vh;
+    margin-top: 8px;
+} */
+
+/* .lapis, .excluir{
     width: 1vw;
-    height: 2vh;
-    margin-bottom: 4px;
-
-
-
-    tirar o fundo do botao
-    aumentar o tam do botao
-    ver o botao de mais
-  
+    height: 2vh;  
 } */
 
