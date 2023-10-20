@@ -16,52 +16,42 @@ const db = getFirestore(app)
 const collectionProdutos = collection(db, 'produtos')
 await getProdutos()
 
-async function codificarImagemEmBase64(inputImageElement) {
-  return new Promise((resolve, reject) => {
-    try {
-      if (inputImageElement.files.length > 0) {
-        const file = inputImageElement.files[0];
-        const reader = new FileReader();
+// PEGAR OS PRODUTOS
+async function getProdutos(){
+  let id=0;
+  let listagens = document.getElementById('tabela');
+  listagens.innerHTML = "";
+  const produtosListagem = query(collectionProdutos, orderBy("dataCadastro", "asc"));
+  const querySnapshot = await getDocs(produtosListagem);
+  querySnapshot.forEach((doc) => {
+    if (doc.data().nome !== "") {
+      id++;
+      let newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <th scope="row">${id}</th>
+        <td>${doc.data().nome}</td>
+        <td>${doc.data().preco}</td>
+        <td>${doc.data().desc}</td>
+        <td>${doc.data().tipo}</td>
+        <td>
+          <center>
+                <img src="./src/image/pencil.svg" class="btn update-button pencil-icon" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
+          </center>
+        </td>
 
-        reader.onload = (e) => {
-          const imageBase64 = e.target.result.split(',')[1];
-          console.log('Imagem codificada em base64:', imageBase64);
-          resolve(imageBase64);
-        }
+        <td>
+          <center>
+              <img src="./src/image/trash.svg" class="btn delete-button trash-icon" data-product-id="${doc.id}" data-product-name="${doc.data().nome}">
+          </center>
+        </td>
+        `;
 
-        reader.readAsDataURL(file); // Certifique-se de chamar readAsDataURL aqui.
-      } else {
-        console.log('Caminho da Imagem não encontrado!');
-        const imageBase64 = "";
-        resolve(imageBase64);
-      }
-    } catch (error) {
-      console.error(error);
-      resolve({ error: true });
+      listagens.appendChild(newRow);
     }
   });
 }
 
-
-async function decodificarImagemBase64(imageBase64) {
-  return new Promise((resolve, reject) => {
-    try {
-      if (imageBase64) {
-        const decodedImageData = atob(imageBase64);
-        resolve(decodedImageData);
-      } else {
-        console.log('Imagem base64 vazia.');
-        resolve('');
-      }
-    } catch (error) {
-      console.error('Erro ao decodificar a imagem base64:', error);
-      resolve({ error: true });
-    }
-  });
-}
-
-
-  
+// CADASTRAR PRODUTOS
 const salvarButton = document.querySelector('#salvar');
 salvarButton.addEventListener('click', async function(event) {
   event.preventDefault();
@@ -115,174 +105,28 @@ salvarButton.addEventListener('click', async function(event) {
     
 });
 
+// MOSTRAR A IMAGEM NO CADASTRAR
+const inputElementCadastrar = document.getElementById('input_image');
 
-function atualizarTabela(produtos) {
-  console.log(produtos)
-  let id = 0;
-  const listagens = document.getElementById('tabela');
-  listagens.innerHTML = '';
-
-  produtos.forEach((produto) => {
-    id++;
-    let newRow = document.createElement('tr');
-    newRow.innerHTML = `
-      <th scope="row">${id}</th>
-      <td>${produto.nome}</td>
-      <td>${produto.preco}</td>
-      <td>${produto.desc}</td>
-      <td>${produto.tipo}</td>
-      <td>
-      <center>
-          <img src="./src/image/pencil.svg" class="btn update-button" data-product-id="${id}" data-product-name="${produto.nome}">
-      </center>
-    </td>
-
-    <td>
-      <center>
-          <img src="./src/image/trash.svg" class="btn delete-button" data-product-id="${id}" data-product-name="${produto.nome}">
-      </center>
-    </td>
-    `;
-
-    listagens.appendChild(newRow);
-  });
-}
-
-
-const botaoPesquisar = document.querySelector('#botao__pesquisar');
-const inputProduto = document.querySelector('#input_produto');
-
-botaoPesquisar.addEventListener('click', function () {
-  const termoPesquisa = inputProduto.value;
-  if(termoPesquisa!=""){
-    pesquisarNoFirestore(termoPesquisa);
-  }
-  else{
-    getProdutos()
-  }
-});
-
-inputProduto.addEventListener('keypress', function (event) {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    const termoPesquisa = inputProduto.value;
-    if(termoPesquisa!=""){
-      pesquisarNoFirestore(termoPesquisa);
-    }
-    else{
-      getProdutos()
-    }
-  }
-});
-
-async function pesquisarNoFirestore(palavraRecebida) {
-  let termo = palavraRecebida.charAt(0).toUpperCase() + palavraRecebida.slice(1).toLowerCase();
-  console.log(termo)
-  const pesquisaQuery = query(
-    collectionProdutos,
-    orderBy('nome'),
-    orderBy('dataCadastro', 'asc'),
-    where('nome', '>=', termo),
-    where('nome', '<=', termo+'\uf8ff'),
-  );
-
-  const querySnapshot = await getDocs(pesquisaQuery);
-
-  const produtosFiltrados = [];
-  querySnapshot.forEach((doc) => {
-    produtosFiltrados.push({
-      id: doc.id,
-      nome: doc.data().nome,
-      preco: doc.data().preco,
-      desc: doc.data().desc,
-      tipo: doc.data().tipo,
-    });
-  });
-
-  atualizarTabela(produtosFiltrados);
-}
-
-
-async function getProdutos(){
-  let id=0;
-  let listagens = document.getElementById('tabela');
-  listagens.innerHTML = "";
-  const produtosListagem = query(collectionProdutos, orderBy("dataCadastro", "asc"));
-  const querySnapshot = await getDocs(produtosListagem);
-  querySnapshot.forEach((doc) => {
-    if (doc.data().nome !== "") {
-      id++;
-      let newRow = document.createElement('tr');
-      newRow.innerHTML = `
-        <th scope="row">${id}</th>
-        <td>${doc.data().nome}</td>
-        <td>${doc.data().preco}</td>
-        <td>${doc.data().desc}</td>
-        <td>${doc.data().tipo}</td>
-        <td>
-          <center>
-                <img src="./src/image/pencil.svg" class="btn update-button pencil-icon" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
-          </center>
-        </td>
-
-        <td>
-          <center>
-              <img src="./src/image/trash.svg" class="btn delete-button trash-icon" data-product-id="${doc.id}" data-product-name="${doc.data().nome}">
-          </center>
-        </td>
-        `;
-
-      listagens.appendChild(newRow);
-    }
-  });
-}
-
-
-
-
-// Fora da função getProdutos(), adicione o event listener para os botões de exclusão
-document.addEventListener('click', async function (event) {
-  if (event.target.classList.contains('delete-button')) {
-    const productId = event.target.getAttribute('data-product-id');
-    const productName = event.target.getAttribute('data-product-name');
-    confirmarExclusao(productId, productName);
-  }
-  else if(event.target.classList.contains('update-button')) {
-      document.getElementById('input_nome_atualizar').value = event.target.getAttribute('data-product-name');
-      document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
-      document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
-      document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
-      document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
-      
-      await decodificarImagemBase64(event.target.getAttribute('data-product-image'))
-      .then((response) => {
-        // document.getElementById('input_image_atualizar') = response;
-        let imagemCodificada = event.target.getAttribute('data-product-image');
-        document.getElementById('show_image_atualizar').src = `data:image/png;base64,${imagemCodificada}`;
-      })
-  }
-});
-
-
-const inputElement = document.getElementById('input_image_atualizar');
-
-inputElement.addEventListener('change', function() {
+inputElementCadastrar.addEventListener('change', function() {
   const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
-  document.getElementById('show_image_atualizar').src = selectedFile.path;
+  document.getElementById('show_image_cadastrar').src = selectedFile.path;
   }
 );
 
+// DESELECIONAR IMAGEM  
+const lixeiraImagemCadastrar = document.getElementById('lixeira_imagem_cadastrar');
 
-// ID DO ICONE DA LIXEIRA DEVE SER lixeira_imagem
-const lixeiraImagem = document.getElementById('lixeira_imagem');
-
-lixeiraImagem.addEventListener('click', function() {
-  const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
-  document.getElementById('show_image_atualizar').src = selectedFile.path;
+lixeiraImagemCadastrar.addEventListener('click', function() {
+  // const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
+  // document.getElementById('show_image_atualizar').src = selectedFile.path;
+  document.getElementById('input_image_cadastrar').value = ""; 
   }
 );
 
+// EXCLUIR PRODUTOS
 
+// ALERT
 function confirmarExclusao(id, nome) {
   Swal.fire({
     title: 'Tem certeza?',
@@ -298,6 +142,7 @@ function confirmarExclusao(id, nome) {
   });
 }
 
+// EXCLUSÃO
 async function excluirProduto(id) {
   try {
     // Use o Firebase Firestore para excluir o produto pelo ID
@@ -311,7 +156,7 @@ async function excluirProduto(id) {
   }
 }
 
-
+// ATUALIZAR PRODUTOS
 const updateButton = document.querySelector('#atualizar');
 updateButton.addEventListener('click', async function(event) {
   event.preventDefault();
@@ -365,3 +210,178 @@ updateButton.addEventListener('click', async function(event) {
     });
     
 });
+
+// MOSTRAR A IMAGEM NO ATUALIZAR
+const inputElementAtualizar = document.getElementById('input_image_atualizar');
+
+inputElementAtualizar.addEventListener('change', function() {
+  const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
+  document.getElementById('show_image_atualizar').src = selectedFile.path;
+  }
+);
+
+// DESELECIONAR IMAGEM  
+const lixeiraImagemAtualizar = document.getElementById('lixeira_imagem_atualizar');
+
+lixeiraImagemAtualizar.addEventListener('click', function() {
+  // const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
+  // document.getElementById('show_image_atualizar').src = selectedFile.path;
+  document.getElementById('input_image_atualizar').value = ""; 
+  }
+);
+
+// CODIFICAR IMAGEM PARA GUARDAR
+async function codificarImagemEmBase64(inputImageElement) {
+  return new Promise((resolve, reject) => {
+    try {
+      if (inputImageElement.files.length > 0) {
+        const file = inputImageElement.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          const imageBase64 = e.target.result.split(',')[1];
+          console.log('Imagem codificada em base64:', imageBase64);
+          resolve(imageBase64);
+        }
+
+        reader.readAsDataURL(file); // Certifique-se de chamar readAsDataURL aqui.
+      } else {
+        console.log('Caminho da Imagem não encontrado!');
+        const imageBase64 = "";
+        resolve(imageBase64);
+      }
+    } catch (error) {
+      console.error(error);
+      resolve({ error: true });
+    }
+  });
+}
+
+
+// ENCAMINHAR PARA EXCLUIR OU ATUALIZAR
+document.addEventListener('click', async function (event) {
+  if (event.target.classList.contains('delete-button')) {
+    const productId = event.target.getAttribute('data-product-id');
+    const productName = event.target.getAttribute('data-product-name');
+    confirmarExclusao(productId, productName);
+  }
+  else if(event.target.classList.contains('update-button')) {
+      document.getElementById('input_nome_atualizar').value = event.target.getAttribute('data-product-name');
+      document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
+      document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
+      document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
+      document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
+      
+      await decodificarImagemBase64(event.target.getAttribute('data-product-image'))
+      .then((response) => {
+        let imagemCodificada = event.target.getAttribute('data-product-image');
+        document.getElementById('show_image_atualizar').src = `data:image/png;base64,${imagemCodificada}`;
+      })
+  }
+});
+
+// DECODIFICAR IMAGEM PARA EXIBIR
+async function decodificarImagemBase64(imageBase64) {
+  return new Promise((resolve, reject) => {
+    try {
+      if (imageBase64) {
+        const decodedImageData = atob(imageBase64);
+        resolve(decodedImageData);
+      } else {
+        console.log('Imagem base64 vazia.');
+        resolve('');
+      }
+    } catch (error) {
+      console.error('Erro ao decodificar a imagem base64:', error);
+      resolve({ error: true });
+    }
+  });
+}
+
+// CONSULTA NO FIRESTORE
+async function pesquisarNoFirestore(palavraRecebida) {
+  let termo = palavraRecebida.charAt(0).toUpperCase() + palavraRecebida.slice(1).toLowerCase();
+  console.log(termo)
+  const pesquisaQuery = query(
+    collectionProdutos,
+    orderBy('nome'),
+    orderBy('dataCadastro', 'asc'),
+    where('nome', '>=', termo),
+    where('nome', '<=', termo+'\uf8ff'),
+  );
+
+  const querySnapshot = await getDocs(pesquisaQuery);
+
+  const produtosFiltrados = [];
+  querySnapshot.forEach((doc) => {
+    produtosFiltrados.push({
+      id: doc.id,
+      nome: doc.data().nome,
+      preco: doc.data().preco,
+      desc: doc.data().desc,
+      tipo: doc.data().tipo,
+    });
+  });
+
+  atualizarTabela(produtosFiltrados);
+}
+
+const botaoPesquisar = document.querySelector('#botao__pesquisar');
+const inputProduto = document.querySelector('#input_produto');
+
+botaoPesquisar.addEventListener('click', function () {
+  const termoPesquisa = inputProduto.value;
+  if(termoPesquisa!=""){
+    pesquisarNoFirestore(termoPesquisa);
+  }
+  else{
+    getProdutos()
+  }
+});
+
+inputProduto.addEventListener('keypress', function (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const termoPesquisa = inputProduto.value;
+    if(termoPesquisa!=""){
+      pesquisarNoFirestore(termoPesquisa);
+    }
+    else{
+      getProdutos()
+    }
+  }
+});
+
+
+// ATUALIZAR A LISTA DE PRODUTOS
+function atualizarTabela(produtos) {
+  console.log(produtos)
+  let id = 0;
+  const listagens = document.getElementById('tabela');
+  listagens.innerHTML = '';
+
+  produtos.forEach((produto) => {
+    id++;
+    let newRow = document.createElement('tr');
+    newRow.innerHTML = `
+      <th scope="row">${id}</th>
+      <td>${produto.nome}</td>
+      <td>${produto.preco}</td>
+      <td>${produto.desc}</td>
+      <td>${produto.tipo}</td>
+      <td>
+      <center>
+          <img src="./src/image/pencil.svg" class="btn update-button" data-product-id="${id}" data-product-name="${produto.nome}">
+      </center>
+    </td>
+
+    <td>
+      <center>
+          <img src="./src/image/trash.svg" class="btn delete-button" data-product-id="${id}" data-product-name="${produto.nome}">
+      </center>
+    </td>
+    `;
+
+    listagens.appendChild(newRow);
+  });
+}

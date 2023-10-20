@@ -1,7 +1,9 @@
+// botão de fechar no header
 function fecharJanela() {
     window.close();
 }
 
+// botão de entrar e sair da tela cheia no header
 var isFullScreen = false;
 
 document.getElementById("alternarTelaCheia").addEventListener("click", function() {
