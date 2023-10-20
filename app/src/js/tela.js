@@ -25,6 +25,3 @@ var element = document.documentElement;
         isFullScreen = false;
     }
 });
-
-
-
