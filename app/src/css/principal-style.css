@@ -12,6 +12,14 @@ header{
     height: 9vh;
 }
 
+/* h1{
+    font-family: sans-serif;
+    color: white;
+    font-size: 1rem;
+    display: inline-block; 
+    margin-top: 30px;
+} */
+
 #botao__pesquisar, #botao__voltar{
     border: none;
     background: none;
@@ -33,7 +41,7 @@ header{
     right: 0;
     height: 5vh;
     width: 4vw;
-    margin-top: 10px;
+    margin-top: 7px;
     margin-right: 5px;
     display: inline-block; 
 }
@@ -44,7 +52,7 @@ header{
     position: absolute;
     height: 5vh;
     width: 4vw;
-    margin-top: 10px;
+    margin-top: 7px;
     margin-right: 5px;
     display: inline-block; 
     right: 0;
@@ -58,7 +66,7 @@ header{
 #input_produto{
     margin-top: 45px;
     width: 60vw;
-    height: 8vh;
+    height: 7.5vh;
 }
 
 #input_tipo{
@@ -73,7 +81,7 @@ header{
 #botao__cadastrar{
     background-color: #d6808cef;
     border: #d6808cef;
-    width: 5vw;
+    /* width: 5vw; */
     height: 5vh;
     margin-right: 20px;
 }
@@ -82,19 +90,6 @@ header{
     width: 2.3vw;
     height: 3.3vh;
 }
-
-/* .btn-excluir:hover{
-    background-color: #7066E0;
-    border: #7066E0;
-}
-
-.btn-atualizar:hover{
-    background-color: #0070BB;
-    border: #0070BB;
-
-
-    btn-danger
-} */
 
 #salvar{
     background-color: rgb(84, 165, 84);
@@ -106,25 +101,28 @@ header{
     border: #808080;
 }
 
-/* .btn-excluir{
-    width: 3vw;
-    height: 4vh;
-    margin-top: 8px;
-} */
-
-/* .lapis, .excluir{
-    width: 1vw;
-    height: 2vh;  
-} */
-
 .trash-icon{
-    border: 1px solid red;
-    border-radius: 2px;
+    border: 1px solid #e67070;
+    background-color: #e67070;
+    border-radius: 10px;
+    height: 5vh;
+}
+
+.trash-icon:hover{
+    border: 1px solid #db4e4e;
+    background-color: #db4e4e;
 }
 
 .update-button{
-    border: 1px solid gray;
-    border-radius: 2px;
+    border: 1px solid #87ceeb;
+    background-color: #87ceeb;
+    border-radius: 10px;
+    height: 5vh;
+}
+
+.update-button:hover{
+    border: 1px solid #57aed1;
+    background-color: #57aed1;
 }
 
 #show_id_atualizar{
