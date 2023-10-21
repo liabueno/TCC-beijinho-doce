@@ -67,15 +67,15 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-3 mt-3">
-                        <label>Nome</label>
+                        <label class="mb-2">Nome</label>
                         <input type="text" id="input_nome" class="form-control"  placeholder="Informe o nome" required>
                     </div>
                     <div class="mb-3 mt-3">
-                        <label>Preço</label>
+                        <label class="mb-2">Preço</label>
                         <input type="number" id="input_preco" class="form-control"  placeholder="Informe o preço" required>
                     </div>
                     <div class="mb-3 mt-2">
-                        <label>Descrição</label>
+                        <label class="mb-2">Descrição</label>
                         <input type="text" id="input_desc" class="form-control" placeholder="Informe a descrição" required>
                     </div>
                     <div class="mb-2 mt-3">
@@ -88,12 +88,20 @@
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
-                      <label>Imagem</label>
-                      <input type="file" accept="image/*" id="input_image_cadastrar" class="form-control input_image" placeholder="Insira a imagem" required>
-                      <button>
-                        <img src="./src/image/lixeira.svg" id="lixeira_imagem_cadastrar" alt="Ícone de Lixeira">
-                      </button>
-                      <img src="" id="show_image_cadastrar">
+                      <label class="mb-2">Imagem</label>
+                      <div class="row">
+                        <div class="col-10">
+                          <input type="file" accept="image/*" id="input_image_cadastrar" class="form-control input_image" placeholder="Insira a imagem" required>
+                        </div>
+                        <div class="col-2">
+                          <button class="x-button">
+                            <img src="./src/image/x.svg" id="x_imagem_cadastrar" class="x" alt="Ícone de X">
+                          </button>
+                        </div>
+                      </div>
+                      <center>
+                        <img src="" id="show_image_cadastrar">
+                      </center>
                   </div>
                 </form>
             </div>
@@ -116,15 +124,15 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3 mt-3">
-                            <label>Nome</label>
+                            <label class="mb-2">Nome</label>
                             <input type="text" id="input_nome_atualizar" class="form-control" placeholder="Informe o nome" required>
                         </div>
                         <div class="mb-3 mt-3">
-                            <label>Preço</label>
+                            <label class="mb-2">Preço</label>
                             <input type="number" id="input_preco_atualizar" class="form-control" placeholder="Informe o preço" required>
                         </div>
                         <div class="mb-3 mt-2">
-                            <label>Descrição</label>
+                            <label class="mb-2">Descrição</label>
                             <input type="text" id="input_desc_atualizar" class="form-control" placeholder="Informe a descrição" required>
                         </div>
                         <div class="mb-2 mt-3">
@@ -137,12 +145,20 @@
                             </select>
                         </div>
                         <div class="mb-3 mt-3">
-                            <label>Imagem</label>
-                            <input type="file" accept="image/*" id="input_image_atualizar" class="form-control input_image" placeholder="Insira a imagem" required>
-                            <button>
-                              <img src="./src/image/lixeira.svg" id="lixeira_imagem_atualizar" alt="Ícone de Lixeira">
-                            </button>
-                            <img src="" id="show_image_atualizar">
+                            <label class="mb-2">Imagem</label>
+                            <div class="row">
+                              <div class="col-10">
+                                  <input type="file" accept="image/*" id="input_image_atualizar" class="form-control input_image" placeholder="Insira a imagem" required>
+                              </div>
+                              <div class="col-2">
+                                <button class="x-button">
+                                  <img src="./src/image/x.svg" id="x_imagem_atualizar" class="x" alt="Ícone de X">
+                                </button>
+                              </div>
+                            </div>
+                            <center>
+                              <img src="" id="show_image_atualizar">
+                            </center>
                         </div>
                     </form>
                 </div>

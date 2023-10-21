@@ -1,9 +1,9 @@
-// botão de fechar no header
+// FUNÇÃO DO BOTÃO DE FECHAR PRESENTE NO HEADER
 function fecharJanela() {
     window.close();
 }
 
-// botão de entrar e sair da tela cheia no header
+// BOTÃO RESIZABLE PRESENTE NO HEADER
 var isFullScreen = false;
 
 document.getElementById("alternarTelaCheia").addEventListener("click", function() {

@@ -35,13 +35,13 @@ async function getProdutos(){
         <td>${doc.data().tipo}</td>
         <td>
           <center>
-                <img src="./src/image/pencil.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
+                <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
           </center>
         </td>
 
         <td>
           <center>
-              <img src="./src/image/trash.svg" class="btn delete-button" data-product-id="${doc.id}" data-product-name="${doc.data().nome}">
+              <img src="./src/image/lixeira.svg" class="btn delete-button" data-product-id="${doc.id}" data-product-name="${doc.data().nome}">
           </center>
         </td>
         `;
@@ -69,13 +69,13 @@ function atualizarTabela(produtos) {
       <td>${produto.tipo}</td>
       <td>
       <center>
-          <img src="./src/image/pencil.svg" class="btn update-button" data-product-id="${id}" data-product-name="${produto.nome}">
+          <img src="./src/image/lapis.svg" class="btn update-button" data-product-id="${id}" data-product-name="${produto.nome}">
       </center>
     </td>
 
     <td>
       <center>
-          <img src="./src/image/trash.svg" class="btn delete-button" data-product-id="${id}" data-product-name="${produto.nome}">
+          <img src="./src/image/lixeira.svg" class="btn delete-button" data-product-id="${id}" data-product-name="${produto.nome}">
       </center>
     </td>
     `;
@@ -236,10 +236,10 @@ salvarButton.addEventListener('click', async function(event) {
     })
 });
 
-// LIXEIRA DA IMAGEM DO CADASTRAR
-const lixeiraImagemCadastrar = document.getElementById('lixeira_imagem_cadastrar');
+// X DA IMAGEM DO CADASTRAR
+const xImagemCadastrar = document.getElementById('x_imagem_cadastrar');
 
-lixeiraImagemCadastrar.addEventListener('click', function() {
+xImagemCadastrar.addEventListener('click', function() {
   document.getElementById('input_image_cadastrar').value = "";
 });
 
@@ -334,10 +334,10 @@ updateButton.addEventListener('click', async function(event) {
     });
 });
 
-// LIXEIRA DA IMAGEM DO ATUALIZAR
-const lixeiraImagemAtualizar = document.getElementById('lixeira_imagem_atualizar');
+// X DA IMAGEM DO ATUALIZAR
+const xImagemAtualizar = document.getElementById('x_imagem_atualizar');
 
-lixeiraImagemAtualizar.addEventListener('click', function() {
+xImagemAtualizar.addEventListener('click', function() {
   document.getElementById('input_image_atualizar').value = "";
 });
 

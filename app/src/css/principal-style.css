@@ -48,9 +48,9 @@ header{
     position: absolute;
 }
 
-/* ÍCONE DE LUPA */
+/* ÍCONE DE LUPA E X DOS MODAIS */
 
-#botao__pesquisar, #botao__voltar{
+#botao__pesquisar, #botao__voltar, .x-button{
     border: none;
     background: none;
 }
@@ -77,7 +77,6 @@ header{
 #botao__cadastrar{
     background-color: #d6808cef;
     border: #d6808cef;
-    /* width: 5vw; */
     height: 5vh;
     margin-right: 20px;
 }
@@ -95,16 +94,22 @@ header{
 }
 
 
-/* BOTÕES DO MODAL DE CADASTRAR */
+/* BOTÕES DO MODAL DE CADASTRAR / ATUALIZAR */
 
 #salvar{
-    background-color: rgb(84, 165, 84);
-    border: rgb(84, 165, 84);
+    background-color: rgb(98, 212, 98);
+    border: rgb(98, 212, 98);
 }
 
-#fechar{
-    background-color: #8b8989;
-    border: #8b8989;
+#fechar, #fechar_atualizar{
+    background-color: #a1a1a1;
+    border: #a1a1a1;
+}
+
+#atualizar{
+    background-color: #52bce6;
+    border: #52bce6;
+
 }
 
 /* ÍCONE DE LIXEIRA -> DELETAR */
@@ -137,4 +142,25 @@ header{
 
 #show_id_atualizar{
     display: none;
+}
+
+/* IMAGEM APARECENDO NO CADASTRAR E ATUALIZAR */
+
+#show_image_cadastrar, #show_image_atualizar{
+    height: 20vh;
+    margin-top: 25px;
+}
+
+#show_image_cadastrar{
+    border: 1px solid #a1a1a1;
+}
+
+/* X DE APAGAR IMAGEM DO CADASTRAR E ATUALIZAR  */
+
+.x-button{
+    margin-top: 5px;
+}
+
+.x{
+    height: 5vh;
 }
