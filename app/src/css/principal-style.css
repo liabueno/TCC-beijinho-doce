@@ -97,18 +97,18 @@ header{
 /* BOTÕES DO MODAL DE CADASTRAR / ATUALIZAR */
 
 #salvar{
-    background-color: rgb(98, 212, 98);
-    border: rgb(98, 212, 98);
+    background-color: rgb(92, 196, 92);
+    border: rgb(92, 196, 92);
 }
 
 #fechar, #fechar_atualizar{
-    background-color: #a1a1a1;
-    border: #a1a1a1;
+    background-color: #9e9d9d;
+    border: #9e9d9d;
 }
 
 #atualizar{
-    background-color: #52bce6;
-    border: #52bce6;
+    background-color: #4aa7cc;
+    border: #4aa7cc;
 
 }
 
