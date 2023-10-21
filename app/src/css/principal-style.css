@@ -88,9 +88,9 @@ header{
 
 /* SELEÇÃO DA CATEGORIA */
 
-#input_tipo{
+.categoria{
     margin-left: 10px;
-    margin-top: 13px;
+    margin-top: 20px;
 }
 
 
