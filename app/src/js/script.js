@@ -54,28 +54,28 @@ async function getProdutos(){
 // ATUALIZAR A LISTA
 function atualizarTabela(produtos) {
   console.log(produtos)
-  let id = 0;
+  let idInterno = 0;
   const listagens = document.getElementById('tabela');
   listagens.innerHTML = '';
 
   produtos.forEach((produto) => {
-    id++;
+    idInterno++;
     let newRow = document.createElement('tr');
     newRow.innerHTML = `
-      <th scope="row">${id}</th>
+      <th scope="row">${idInterno}</th>
       <td>${produto.nome}</td>
       <td>${produto.preco}</td>
       <td>${produto.desc}</td>
       <td>${produto.tipo}</td>
       <td>
       <center>
-          <img src="./src/image/lapis.svg" class="btn update-button" data-product-id="${id}" data-product-name="${produto.nome}">
+            <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-tipo="${produto.tipo}" data-product-desc="${produto.desc}" data-product-preco="${produto.preco}" data-product-image="${produto.img}">
       </center>
     </td>
 
     <td>
       <center>
-          <img src="./src/image/lixeira.svg" class="btn delete-button" data-product-id="${id}" data-product-name="${produto.nome}">
+          <img src="./src/image/lixeira.svg" class="btn delete-button" data-product-id="${produto.id}" data-product-name="${produto.nome}">
       </center>
     </td>
     `;
@@ -106,6 +106,7 @@ async function pesquisarNoFirestore(palavraRecebida) {
       preco: doc.data().preco,
       desc: doc.data().desc,
       tipo: doc.data().tipo,
+      img: doc.data().image
     });
   });
 
@@ -263,6 +264,7 @@ function confirmarExclusao(id, nome) {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
+      console.log('IsConfirmed');
       excluirProduto(id);
     }
   });
