@@ -1,0 +1,93 @@
+body{
+    background-color: #FFB7E4;
+    font-family: 'Fredoka', sans-serif;
+}
+a{
+    text-decoration: none;
+    text-align: center;
+    font-size: 15pt;
+    color: white;
+}
+a:hover{
+    color: #220A40;
+    text-decoration: none;
+}
+.menu, .nome{
+    font-size: 16.5pt;
+}
+.menu:hover{
+    font-size: 17pt;
+}
+.cabec{
+    display: flex;
+    background-color: #ff83c9;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.nome{
+    color: white;
+}
+.menu_estendido{
+    width: 4px;
+}
+.letra_categoria{
+    font-size: large;
+}
+.logo{
+    width: 16%;
+    border-radius: 100%;
+    margin: 5px;
+}
+.brand{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.links{
+    display: flex;
+    flex-direction: row;
+}
+.contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: #ff83c9;
+}
+.capa{
+    width: 86vw;
+}
+.card-deck{
+    width: 80vw;
+    padding-top: 20px;
+}
+.rodape{
+    background-color: #940050;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+.card-title{
+    font-size: 22pt;
+}
+.rodape h4{
+    font-size: medium;
+}
+.transition{
+    transition: .5s;
+}
+.transition:hover{
+    transform: scale(1.03, 1.03);
+}
+p{
+    font-size: 1.2em;
+}
+h3{
+    font-size: 0.8em;
+    opacity: 0.9;
+}
+h2{
+    font-size: 1.5em;
+}
