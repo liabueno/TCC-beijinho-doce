@@ -12,6 +12,23 @@ a:hover{
     color: #220A40;
     text-decoration: none;
 }
+.menu, .nome{
+    font-size: 16.5pt;
+}
+.menu:hover{
+    font-size: 17pt;
+}
+.menu_icone{
+    width: 30px;
+    height: 30px;
+}
+.menu_icone:hover{
+    width: 31.5px;
+    height: 31.5px;
+}
+.menu{
+    margin-right: 2px;
+}
 .cabec{
     display: flex;
     background-color: #ff83c9;
@@ -19,8 +36,14 @@ a:hover{
     align-items: center;
     flex-direction: row;
 }
-.cabec h1{
+.nome{
     color: white;
+}
+.menu_estendido{
+    width: 4px;
+}
+.letra_categoria{
+    font-size: large;
 }
 .logo{
     width: 16%;
@@ -56,22 +79,17 @@ a:hover{
 .card-deck{
     width: 86vw;
 }
-.carrinho{
-    color: #220A40;
-    font-size: 1.3em;
+.card{
+    margin-top: 20px;
 }
 .card-title{
     font-size: 22pt;
-}
-.carrinho:hover{
-    color: #940050;
-    text-decoration: none;
 }
 .rodape h4{
     font-size: medium;
 }
 .transition{
-    transition: .4s;
+    transition: .5s;
 }
 .transition:hover{
     transform: scale(1.03, 1.03);

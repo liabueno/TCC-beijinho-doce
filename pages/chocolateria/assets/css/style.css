@@ -18,6 +18,17 @@ a:hover{
 .menu:hover{
     font-size: 17pt;
 }
+.menu_icone{
+    width: 30px;
+    height: 30px;
+}
+.menu_icone:hover{
+    width: 31.5px;
+    height: 31.5px;
+}
+.menu{
+    margin-right: 2px;
+}
 .cabec{
     display: flex;
     background-color: #ff83c9;
@@ -59,8 +70,10 @@ a:hover{
     width: 86vw;
 }
 .card-deck{
-    width: 80vw;
-    padding-top: 20px;
+    width: 86vw;
+}
+.card{
+    margin-top: 20px;
 }
 .rodape{
     background-color: #940050;
