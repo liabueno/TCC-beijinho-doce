@@ -32,10 +32,11 @@ async function getProdutos(){
         <td>${doc.data().nome}</td>
         <td>${doc.data().preco}</td>
         <td>${doc.data().desc}</td>
+        <td>${doc.data().peso}</td>
         <td>${doc.data().tipo}</td>
         <td>
           <center>
-                <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
+                <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-peso="${doc.data().peso}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
           </center>
         </td>
 
@@ -66,10 +67,11 @@ function atualizarTabela(produtos) {
       <td>${produto.nome}</td>
       <td>${produto.preco}</td>
       <td>${produto.desc}</td>
+      <td>${produto.peso}</td>
       <td>${produto.tipo}</td>
       <td>
       <center>
-            <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-tipo="${produto.tipo}" data-product-desc="${produto.desc}" data-product-preco="${produto.preco}" data-product-image="${produto.img}">
+            <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-peso="${produto.peso}" data-product-tipo="${produto.tipo}" data-product-desc="${produto.desc}" data-product-preco="${produto.preco}" data-product-image="${produto.img}">
       </center>
     </td>
 
@@ -105,6 +107,7 @@ async function pesquisarNoFirestore(palavraRecebida) {
       nome: doc.data().nome,
       preco: doc.data().preco,
       desc: doc.data().desc,
+      peso: doc.data().peso,
       tipo: doc.data().tipo,
       img: doc.data().image
     });
@@ -193,6 +196,7 @@ salvarButton.addEventListener('click', async function(event) {
   const nomeProd = document.querySelector('#input_nome').value;
   const precoProd = document.querySelector('#input_preco').value;
   const descricaoProd = document.querySelector('#input_desc').value;
+  const pesoProd = document.querySelector('#input_peso').value;
   const tipoProd = document.querySelector('#input_tipo').value;
   const inputImageElement = document.querySelector('#input_image_cadastrar');
   const dataCadastroProduto = new Date();
@@ -209,6 +213,7 @@ salvarButton.addEventListener('click', async function(event) {
         desc: descricaoProd,
         nome: nomeProd,
         preco: precoProd,
+        peso: pesoProd,
         tipo: tipoProd
       }
   
@@ -226,9 +231,9 @@ salvarButton.addEventListener('click', async function(event) {
         document.getElementById('input_nome').value = "";
         document.getElementById('input_preco').value =  "";
         document.getElementById('input_desc').value = "";
+        document.getElementById('input_peso').value = "";
         document.getElementById('opcao_padrao').selected = true;
         document.getElementById('input_image_cadastrar').value = "";
-
       })
       .catch(console.log)
       .finally(() => {
@@ -291,6 +296,7 @@ updateButton.addEventListener('click', async function(event) {
   const nomeProd = document.querySelector('#input_nome_atualizar').value;
   const precoProd = document.querySelector('#input_preco_atualizar').value;
   const descricaoProd = document.querySelector('#input_desc_atualizar').value;
+  const pesoProd = document.querySelector('#input_peso_atualizar').value;
   const tipoProd = document.querySelector('#input_tipo_atualizar').value;
   const inputImageElement = document.querySelector('#input_image_atualizar'); // Seletor do input de arquivo
   let imagemCodificada;
@@ -300,16 +306,11 @@ updateButton.addEventListener('click', async function(event) {
       imagemCodificada = response
     })
 
-    console.log('Id: ' + idProduto);
-    console.log('Nome: ' + nomeProd);
-    console.log('Desc: ' + descricaoProd);
-    console.log('Preco: ' + precoProd);
-    console.log('Tipo:  ' + tipoProd);
-
     let produtosAtualizado = {
       desc: descricaoProd,
       nome: nomeProd,
       preco: precoProd,
+      peso: pesoProd,
       tipo: tipoProd
     }
     console.log(imagemCodificada);
@@ -326,6 +327,7 @@ updateButton.addEventListener('click', async function(event) {
       document.getElementById('input_nome_atualizar').value = "";
       document.getElementById('input_preco_atualizar').value =  "";
       document.getElementById('input_desc_atualizar').value = "";
+      document.getElementById('input_peso_atualizar').value = "";
       document.getElementById('opcao_padrao').selected = true;
       document.getElementById('input_image_atualizar').value = ""; 
       document.getElementById('show_id_atualizar').innerHTML = " "
@@ -362,6 +364,7 @@ document.addEventListener('click', async function (event) {
       document.getElementById('input_nome_atualizar').value = event.target.getAttribute('data-product-name');
       document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
       document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
+      document.getElementById('input_peso_atualizar').value = event.target.getAttribute('data-product-peso');
       document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
       document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
       
