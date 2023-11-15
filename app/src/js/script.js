@@ -32,11 +32,12 @@ async function getProdutos(){
         <td>${doc.data().nome}</td>
         <td>${doc.data().preco}</td>
         <td>${doc.data().desc}</td>
+        <td>${doc.data().restricao}</td>
         <td>${doc.data().peso}</td>
         <td>${doc.data().tipo}</td>
         <td>
           <center>
-                <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-peso="${doc.data().peso}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
+                <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-restricao="${doc.data().restricao}" data-product-peso="${doc.data().peso}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
           </center>
         </td>
 
@@ -67,17 +68,18 @@ function atualizarTabela(produtos) {
       <td>${produto.nome}</td>
       <td>${produto.preco}</td>
       <td>${produto.desc}</td>
+      <td>${produto.restricao}</td>
       <td>${produto.peso}</td>
       <td>${produto.tipo}</td>
       <td>
       <center>
-            <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-peso="${produto.peso}" data-product-tipo="${produto.tipo}" data-product-desc="${produto.desc}" data-product-preco="${produto.preco}" data-product-image="${produto.img}">
+        <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-restricao="${produto.restricao}" data-product-peso="${produto.peso}" data-product-tipo="${produto.tipo}" data-product-desc="${produto.desc}" data-product-preco="${produto.preco}" data-product-image="${produto.img}">
       </center>
     </td>
 
     <td>
       <center>
-          <img src="./src/image/lixeira.svg" class="btn delete-button" data-product-id="${produto.id}" data-product-name="${produto.nome}">
+        <img src="./src/image/lixeira.svg" class="btn delete-button" data-product-id="${produto.id}" data-product-name="${produto.nome}">
       </center>
     </td>
     `;
@@ -107,6 +109,7 @@ async function pesquisarNoFirestore(palavraRecebida) {
       nome: doc.data().nome,
       preco: doc.data().preco,
       desc: doc.data().desc,
+      restricao: doc.data().restricao,
       peso: doc.data().peso,
       tipo: doc.data().tipo,
       img: doc.data().image
@@ -202,6 +205,13 @@ salvarButton.addEventListener('click', async function(event) {
   const dataCadastroProduto = new Date();
   let imagemCodificada;
   let produtoParaCadastrar;
+  const restricaoCheckBoxes = document.querySelectorAll('#input_restricao input[type="checkbox"]');
+  const restricoesSelecionadas = Array.from(restricaoCheckBoxes)
+  .filter(checkbox => checkbox.checked)
+  .map(checkbox => checkbox.value);
+
+// Agora, restricoesSelecionadas é um array contendo os valores das restrições selecionadas
+  const restricaoProd = restricoesSelecionadas.join('<br>');
 
     await codificarImagemEmBase64(inputImageElement)
     .then(response => {
@@ -213,6 +223,7 @@ salvarButton.addEventListener('click', async function(event) {
         desc: descricaoProd,
         nome: nomeProd,
         preco: precoProd,
+        restricao: restricaoProd,
         peso: pesoProd,
         tipo: tipoProd
       }
@@ -232,6 +243,7 @@ salvarButton.addEventListener('click', async function(event) {
         document.getElementById('input_preco').value =  "";
         document.getElementById('input_desc').value = "";
         document.getElementById('input_peso').value = "";
+        document.getElementById('input_restricao').value = ""; 
         document.getElementById('opcao_padrao').selected = true;
         document.getElementById('input_image_cadastrar').value = "";
       })
@@ -300,6 +312,13 @@ updateButton.addEventListener('click', async function(event) {
   const tipoProd = document.querySelector('#input_tipo_atualizar').value;
   const inputImageElement = document.querySelector('#input_image_atualizar'); // Seletor do input de arquivo
   let imagemCodificada;
+  const restricaoCheckBoxesAtualizar = document.querySelectorAll('#input_restricao_atualizar input[type="checkbox"]');
+  const restricoesSelecionadasAtualizar = Array.from(restricaoCheckBoxesAtualizar)
+  .filter(checkbox => checkbox.checked)
+  .map(checkbox => checkbox.value);
+
+  // Agora, restricoesSelecionadasAtualizar é um array contendo os valores das restrições selecionadas
+  const restricaoProdAtualizar = restricoesSelecionadasAtualizar.join('<br>');
 
     await codificarImagemEmBase64(inputImageElement)
     .then(response => {
@@ -311,6 +330,7 @@ updateButton.addEventListener('click', async function(event) {
       nome: nomeProd,
       preco: precoProd,
       peso: pesoProd,
+      restricao: restricaoProdAtualizar,
       tipo: tipoProd
     }
     console.log(imagemCodificada);
@@ -327,6 +347,7 @@ updateButton.addEventListener('click', async function(event) {
       document.getElementById('input_nome_atualizar').value = "";
       document.getElementById('input_preco_atualizar').value =  "";
       document.getElementById('input_desc_atualizar').value = "";
+      document.getElementById('input_restricao_atualizar').value = ""; 
       document.getElementById('input_peso_atualizar').value = "";
       document.getElementById('opcao_padrao').selected = true;
       document.getElementById('input_image_atualizar').value = ""; 
@@ -365,6 +386,7 @@ document.addEventListener('click', async function (event) {
       document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
       document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
       document.getElementById('input_peso_atualizar').value = event.target.getAttribute('data-product-peso');
+      document.getElementById('input_restricao_atualizar').value = event.target.getAttribute('data-product-restricao');
       document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
       document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
       
