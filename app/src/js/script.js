@@ -210,7 +210,6 @@ salvarButton.addEventListener('click', async function(event) {
   .filter(checkbox => checkbox.checked)
   .map(checkbox => checkbox.value);
 
-// Agora, restricoesSelecionadas é um array contendo os valores das restrições selecionadas
   const restricaoProd = restricoesSelecionadas.join('<br>');
 
     await codificarImagemEmBase64(inputImageElement)
