@@ -28,13 +28,13 @@ async function getProdutos(){
       id++;
       let newRow = document.createElement('tr');
       newRow.innerHTML = `
-        <th scope="row">${id}</th>
-        <td>${doc.data().nome}</td>
-        <td>${doc.data().preco}</td>
-        <td>${doc.data().desc}</td>
-        <td>${doc.data().restricao}</td>
-        <td>${doc.data().peso}</td>
-        <td>${doc.data().tipo}</td>
+        <th scope="row"><center>${id}</center></th>
+        <td><center>${doc.data().nome}</center></td>
+        <td><center>${doc.data().preco}</center></td>
+        <td><center>${doc.data().desc}</center></td>
+        <td><center>${doc.data().restricao}</center></td>
+        <td><center>${doc.data().peso}</center></td>
+        <td><center>${doc.data().tipo}</center></td>
         <td>
           <center>
                 <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${doc.id}" data-product-name="${doc.data().nome}" data-product-restricao="${doc.data().restricao}" data-product-peso="${doc.data().peso}" data-product-tipo="${doc.data().tipo}" data-product-desc="${doc.data().desc}" data-product-preco="${doc.data().preco}" data-product-image="${doc.data().image}">
@@ -64,13 +64,13 @@ function atualizarTabela(produtos) {
     idInterno++;
     let newRow = document.createElement('tr');
     newRow.innerHTML = `
-      <th scope="row">${idInterno}</th>
-      <td>${produto.nome}</td>
-      <td>${produto.preco}</td>
-      <td>${produto.desc}</td>
-      <td>${produto.restricao}</td>
-      <td>${produto.peso}</td>
-      <td>${produto.tipo}</td>
+      <th scope="row"><center>${idInterno}<center></th>
+      <td><center>${produto.nome}</center></td>
+      <td><center>${produto.preco}</center></td>
+      <td><center>${produto.desc}</center></td>
+      <td><center>${produto.restricao}</center></td>
+      <td><center>${produto.peso}</center></td>
+      <td><center>${produto.tipo}</center></td>
       <td>
       <center>
         <img src="./src/image/lapis.svg" class="btn update-button" id="botao__atualizar"  data-bs-toggle="modal" data-bs-target="#atualizarModal" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-restricao="${produto.restricao}" data-product-peso="${produto.peso}" data-product-tipo="${produto.tipo}" data-product-desc="${produto.desc}" data-product-preco="${produto.preco}" data-product-image="${produto.img}">
@@ -332,13 +332,15 @@ updateButton.addEventListener('click', async function(event) {
       restricao: restricaoProdAtualizar,
       tipo: tipoProd
     }
-    console.log(imagemCodificada);
-    if(!(imagemCodificada.error)){
+
+
+    if((!(imagemCodificada.error)&&(imagemCodificada!=''))){
       produtosAtualizado.image = imagemCodificada
     }
     else{
-      produtosAtualizado.image = " ";
+      produtosAtualizado.image = imagemGuardada;
     }
+  
 
     await updateDoc(doc(db, "produtos", idProduto), produtosAtualizado)
     .then(() => console.log('Documento atualizado'))
@@ -350,7 +352,7 @@ updateButton.addEventListener('click', async function(event) {
       document.getElementById('input_peso_atualizar').value = "";
       document.getElementById('opcao_padrao').selected = true;
       document.getElementById('input_image_atualizar').value = ""; 
-      document.getElementById('show_id_atualizar').innerHTML = " "
+      document.getElementById('show_id_atualizar').innerHTML = " ";
     })
     .catch(console.log)
     .finally(() => {
@@ -389,6 +391,8 @@ document.addEventListener('click', async function (event) {
       document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
       document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
       
+      imagemGuardada = event.target.getAttribute('data-product-image');
+
       await decodificarImagemBase64(event.target.getAttribute('data-product-image'))
       .then((response) => {
         let imagemCodificada = event.target.getAttribute('data-product-image');
@@ -396,3 +400,6 @@ document.addEventListener('click', async function (event) {
       })
   }
 });
+
+
+var imagemGuardada;
