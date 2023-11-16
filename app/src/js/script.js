@@ -387,7 +387,6 @@ document.addEventListener('click', async function (event) {
       document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
       document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
       document.getElementById('input_peso_atualizar').value = event.target.getAttribute('data-product-peso');
-      document.getElementById('input_restricao_atualizar').value = event.target.getAttribute('data-product-restricao');
       document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
       document.getElementById('show_id_atualizar').innerHTML = event.target.getAttribute('data-product-id');
       
@@ -398,6 +397,12 @@ document.addEventListener('click', async function (event) {
         let imagemCodificada = event.target.getAttribute('data-product-image');
         document.getElementById('show_image_atualizar').src = `data:image/png;base64,${imagemCodificada}`;
       })
+
+      const restricoesSelecionadasAtualizar = event.target.getAttribute('data-product-restricao').split('<br>');
+
+      restricaoCheckBoxesAtualizar.forEach(checkbox => {
+        checkbox.checked = restricoesSelecionadasAtualizar.includes(checkbox.value);
+      });
   }
 });
 
