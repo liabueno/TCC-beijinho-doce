@@ -309,14 +309,13 @@ updateButton.addEventListener('click', async function(event) {
   const descricaoProd = document.querySelector('#input_desc_atualizar').value;
   const pesoProd = document.querySelector('#input_peso_atualizar').value;
   const tipoProd = document.querySelector('#input_tipo_atualizar').value;
-  const inputImageElement = document.querySelector('#input_image_atualizar'); // Seletor do input de arquivo
+  const inputImageElement = document.querySelector('#input_image_atualizar'); 
   let imagemCodificada;
   const restricaoCheckBoxesAtualizar = document.querySelectorAll('#input_restricao_atualizar input[type="checkbox"]');
   const restricoesSelecionadasAtualizar = Array.from(restricaoCheckBoxesAtualizar)
   .filter(checkbox => checkbox.checked)
   .map(checkbox => checkbox.value);
 
-  // Agora, restricoesSelecionadasAtualizar é um array contendo os valores das restrições selecionadas
   const restricaoProdAtualizar = restricoesSelecionadasAtualizar.join('<br>');
 
     await codificarImagemEmBase64(inputImageElement)
@@ -371,7 +370,7 @@ xImagemAtualizar.addEventListener('click', function() {
 const inputElement = document.getElementById('input_image_atualizar');
 
 inputElement.addEventListener('change', function() {
-  const selectedFile = inputElement.files[0]; // Obtém o arquivo selecionado
+  const selectedFile = inputElement.files[0]; 
   document.getElementById('show_image_atualizar').src = selectedFile.path;
 });
 
@@ -405,6 +404,5 @@ document.addEventListener('click', async function (event) {
       });
   }
 });
-
 
 var imagemGuardada;

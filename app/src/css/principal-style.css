@@ -122,7 +122,6 @@ input[type="checkbox"]:checked {
 #atualizar{
     background-color: #4aa7cc;
     border: #4aa7cc;
-
 }
 
 /* ÍCONE DE LIXEIRA -> DELETAR */
@@ -130,7 +129,9 @@ input[type="checkbox"]:checked {
 .delete-button{
     border: 1px solid #AAA5ED;
     border-radius: 5px;
-    height: 5.4vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 6vh;
 }
 
 .delete-button:hover{
@@ -143,7 +144,9 @@ input[type="checkbox"]:checked {
 .update-button{
     border: 1px solid #87ceeb;
     border-radius: 5px;
-    height: 5.4vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 6vh;
 }
 
 .update-button:hover{
