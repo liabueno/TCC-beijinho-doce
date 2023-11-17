@@ -396,13 +396,17 @@ document.addEventListener('click', async function (event) {
         let imagemCodificada = event.target.getAttribute('data-product-image');
         document.getElementById('show_image_atualizar').src = `data:image/png;base64,${imagemCodificada}`;
       })
-
+      
       const restricoesSelecionadasAtualizar = event.target.getAttribute('data-product-restricao').split('<br>');
-
+      const restricaoCheckBoxesAtualizar = document.querySelectorAll('#input_restricao_atualizar input[type="checkbox"]');
+  
       restricaoCheckBoxesAtualizar.forEach(checkbox => {
         checkbox.checked = restricoesSelecionadasAtualizar.includes(checkbox.value);
       });
   }
 });
+
+
+
 
 var imagemGuardada;
