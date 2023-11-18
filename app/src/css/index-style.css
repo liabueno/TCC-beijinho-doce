@@ -8,7 +8,7 @@ header{
 }
 
 img{
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 a:link{
@@ -18,7 +18,7 @@ a:link{
 .btn-inicio{
     background-color: #aa386f;
     border: #aa386f;
-    margin-top: 30px;
+    margin-top: 50px;
     width: 20vw;
     height: 8vh;
     text-align: center;
