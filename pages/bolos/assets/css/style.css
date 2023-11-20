@@ -46,8 +46,8 @@ a:hover{
     font-size: large;
 }
 .logo{
-    width: 16%;
-    border-radius: 100%;
+    width: 20%;
+    border-radius: 50%;
     margin: 5px;
 }
 .brand{
@@ -68,22 +68,40 @@ a:hover{
 }
 .rodape{
     background-color: #940050;
-    color: white;
-    display: flex;
-    justify-content: center;
     padding: 5px;
+}
+.logoApp{
+    width: 10%;
+    border-radius: 50%; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.nomeApp{
+    color: white;
 }
 .capa{
     width: 86vw;
 }
 .card-deck{
     width: 86vw;
+    height: auto;
 }
 .card{
+    min-width: 20vw ;
+    max-width: 26vw ;
     margin-top: 20px;
 }
 .card-title{
     font-size: 22pt;
+}
+.preco{
+    color: #ff83c9;
+}
+.encomenda{
+    color: #940050;
+}
+.direita{
+    text-align: right;
 }
 .rodape h4{
     font-size: medium;
@@ -103,4 +121,17 @@ h3{
 }
 h2{
     font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+    .card-deck {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+    .card{
+        min-width: 70vw;
+        max-width: 76vw;
+        margin-top: 25px;
+    }
 }
