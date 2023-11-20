@@ -197,7 +197,7 @@ salvarButton.addEventListener('click', async function(event) {
   event.preventDefault();
 
   const nomeProd = document.querySelector('#input_nome').value;
-  const precoProd = document.querySelector('#input_preco').value;
+  const precoProd = document.querySelector('#input_preco').value.replace('.', ',');
   const descricaoProd = document.querySelector('#input_desc').value;
   const pesoProd = document.querySelector('#input_peso').value;
   const tipoProd = document.querySelector('#input_tipo').value;
@@ -309,7 +309,7 @@ updateButton.addEventListener('click', async function(event) {
 
   const idProduto = document.getElementById('show_id_atualizar').textContent;
   const nomeProd = document.querySelector('#input_nome_atualizar').value;
-  const precoProd = document.querySelector('#input_preco_atualizar').value;
+  const precoProd = document.querySelector('#input_preco_atualizar').value.replace('.', ',');
   const descricaoProd = document.querySelector('#input_desc_atualizar').value;
   const pesoProd = document.querySelector('#input_peso_atualizar').value;
   const tipoProd = document.querySelector('#input_tipo_atualizar').value;
