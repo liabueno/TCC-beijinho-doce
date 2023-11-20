@@ -1,10 +1,15 @@
 /* *{
     outline: 1px dashed salmon;
 } */
+
+/* INDEX */
+
 body{
     background-color: #FFB7E4;
     font-family: 'Fredoka', sans-serif;
 }
+
+/* HEADER */
 a{
     text-decoration: none;
     color: white;
@@ -43,7 +48,7 @@ a:hover{
     color: white;
 }
 .logo{
-    width: 16%;
+    width: 20%;
     border-radius: 100%;
     margin: 5px;
 }
@@ -62,6 +67,17 @@ a:hover{
     display: flex;
     flex-direction: row;
 }
+
+/* CAROUSEL */
+.carousel{
+    width: 86vw;
+    margin-top: 20px;
+}
+.carousel, .card-deck{
+    padding: 0;
+}
+
+/* DIVISÓRIA */
 .sabor{
     color: #220A40;
     display: flex;
@@ -69,6 +85,8 @@ a:hover{
     align-items: center;
     font-weight: 900;
 }
+
+/* CARDS */
 .text_link{
     text-decoration: none;
     color: #220A40;
@@ -77,16 +95,17 @@ a:hover{
 .text_link:hover{
     color: #940050;
 }
-.carousel{
-    width: 86vw;
-    margin-top: 20px;
-}
-.carousel, .card-deck{
-    padding: 0;
-}
 .card-deck{
     width: 86vw;
 }
+.transition{
+    transition: .5s;
+}
+.transition:hover{
+    transform: scale(1.03, 1.03);
+}
+
+/* ANTES DO FOOTER */
 .contato{
     display: flex;
     align-items: center;
@@ -103,6 +122,8 @@ a:hover{
 .nomeApp{
     color: white;
 }
+
+/* FOOTER */
 .rodape{
     background-color: #940050;
     padding: 5px;
@@ -110,12 +131,8 @@ a:hover{
 .rodape h4{
     font-size: medium;
 }
-.transition{
-    transition: .5s;
-}
-.transition:hover{
-    transform: scale(1.03, 1.03);
-}
+
+/* TELAS PEQUENAS */
 @media (max-width: 768px) {
     .card-deck {
         align-items: center;

@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js';
 import { getFirestore, collection, addDoc, query, getDocs , orderBy, doc, deleteDoc, where, updateDoc } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
 
+// CHAVE
 const firebaseConfig = {
   apiKey: 'AIzaSyA5DWm_hrQPn8RyxGu-ZhnbDHCvdxxG7MQ',
   authDomain: 'doceria-85ffc.firebaseapp.com',
@@ -11,23 +12,28 @@ const firebaseConfig = {
   measurementId: 'G-2R6C10H9Y2'
 };
 
+// INICIANDO
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 const collectionProdutos = collection(db, 'produtos')
 getProdutos()
 
-
+//  FUNÇÃO PARA PEGAR OS PRODUTOS NO FIREBASE
 async function getProdutos() {
-  let listagemProdutos = document.getElementById('listagem-dos-produtos');
+  let listagemProdutos = document.getElementById('listagem-dos-produtos'); // ID PUXADO PARA ADICIONAR
 
-  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'chocolateria'));
+  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'chocolateria')); // SEPARANDO CONFORME CATEGORIA
   const querySnapshot = await getDocs(produtosListagem);
 
+  // CRIANDO DINAMICAMENTE
   querySnapshot.forEach(async (doc) => {
     if (doc.data().nome !== "") {
       try {
-        const response = await decodificarImagemBase64(doc.data().image);
+        // DECODIFICANDO IMAGEM SALVA EM BASE 64
+        const response = await decodificarImagemBase64(doc.data().image); 
+        // RETIRANDO A VÍRGULA DA FORMA COM QUE FOI SALVA AS RESTRIÇÕES
         let restricoes = doc.data().restricao.split(',');
+        // PEGANDO O NOME DO PRODUTO PARA UTILIZAR NA API DO WHATSAPP
         let nomeFormatadoWhats = '';
         let nomeProdutoArray = doc.data().nome.split(' ');
 
@@ -40,12 +46,14 @@ async function getProdutos() {
           }
         }
 
+        // FORMATANDO O PESO, CONVERTENDO PARA KG CASO PRECISO
         const pesoFormatado = doc.data().peso > 1000
         ? `${(doc.data().peso / 1000).toFixed(2)}kg`
         : `${doc.data().peso}g`;
  
-        let newProduct = document.createElement('div');
-        newProduct.className = 'card transition';
+        // CRIAÇÃO DOS CARDS
+        let newProduct = document.createElement('div'); // ELEMENTO QUE SERÁ CRIADO
+        newProduct.className = 'card transition'; // NOME DA CLASSE DO ELEMENTO
         newProduct.innerHTML = `
           <a target="_blank" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
             <img class="card-img-top" id="produtoImagem">
@@ -55,19 +63,22 @@ async function getProdutos() {
             <p>${doc.data().desc}</p>
             <h1 class="preco">R$ ${doc.data().preco}</h1>
             <h6>${pesoFormatado}</h6>
-            <a target="_blank" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
-              <p class="encomenda"> Peça já! </p>
-            </a>
-            <div id="restricoes" class="direita">
+           
+            <div id="restricoes" class="align-text-right">
               
             </div>
+
+             <a target="_blank" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
+              <p class="encomenda"> Peça Já! </p>
+            </a>
+
           </div>
-       
-        `;
+        `; // CONSTRUÇÃO HTML
 
-        listagemProdutos.appendChild(newProduct);
+        listagemProdutos.appendChild(newProduct); 
 
-        const restricoesDiv = newProduct.querySelector('#restricoes');
+        // TRATAMENTO PRÓPRIO PARA AS RESTRIÇÕES
+        const restricoesDiv = newProduct.querySelector('#restricoes'); 
 
         for(let i=0; i<restricoes.length; i++){
           
@@ -76,6 +87,7 @@ async function getProdutos() {
           restricoesDiv.appendChild(textRestricao);
         }
         
+        // TRATAMENTO PRÓPRIO PARA A IMAGEM
         const produtoImagem = newProduct.querySelector('#produtoImagem');
         produtoImagem.src = response;
       } catch (error) {
@@ -85,7 +97,7 @@ async function getProdutos() {
   });
 }
 
-
+// FUNÇÃO QUE DECODIFICARÁ A IMAGEM
 async function decodificarImagemBase64(imageBase64) {
   return new Promise((resolve, reject) => {
     try {
@@ -98,11 +110,9 @@ async function decodificarImagemBase64(imageBase64) {
           view[i] = decodedImageData.charCodeAt(i);
         }
   
-        // Cria um Blob a partir do ArrayBuffer
+        // CRIA UM BLOB A PARTIR DO ARRAY BUFFER
         const blob = new Blob([buffer], { type: 'image/png' });
         const imageUrl = URL.createObjectURL(blob);
-
-        
 
         resolve(imageUrl);
       } else {

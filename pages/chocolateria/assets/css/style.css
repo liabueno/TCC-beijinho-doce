@@ -1,7 +1,11 @@
+/* CHOCOLATERIA */
+
 body{
     background-color: #FFB7E4;
     font-family: 'Fredoka', sans-serif;
 }
+
+/* HEADER */
 a{
     text-decoration: none;
     color: white;
@@ -59,29 +63,13 @@ a:hover{
     display: flex;
     flex-direction: row;
 }
-.contato{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    background-color: #ff83c9;
-}
-.rodape{
-    background-color: #940050;
-    padding: 5px;
-}
-.logoApp{
-    width: 10%;
-    border-radius: 50%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.nomeApp{
-    color: white;
-}
+
+/* CAPA DA CATEGORIA */
 .capa{
     width: 86vw;
 }
+
+/* CARDS */
 .card-deck{
     width: 86vw;
     height: auto;
@@ -100,12 +88,6 @@ a:hover{
 .encomenda{
     color: #940050;
 }
-.direita{
-    text-align: right;
-}
-.rodape h4{
-    font-size: medium;
-}
 .transition{
     transition: .5s;
 }
@@ -123,6 +105,34 @@ h2{
     font-size: 1.5em;
 }
 
+/* ANTES DO FOOTER */
+.contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: #ff83c9;
+}
+
+/* FOOTER */
+.rodape{
+    background-color: #940050;
+    padding: 5px;
+}
+.logoApp{
+    width: 10%;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.nomeApp{
+    color: white;
+}
+.rodape h4{
+    font-size: medium;
+}
+
+/* TELAS PEQUENAS */
 @media (max-width: 768px) {
     .card-deck {
         align-items: center;
