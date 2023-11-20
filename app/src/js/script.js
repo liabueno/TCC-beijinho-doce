@@ -197,7 +197,7 @@ salvarButton.addEventListener('click', async function(event) {
   event.preventDefault();
 
   const nomeProd = document.querySelector('#input_nome').value;
-  const precoProd = document.querySelector('#input_preco').value.replace('.', ',');
+  const precoProd = document.querySelector('#input_preco').value.replace(',', '.');
   const descricaoProd = document.querySelector('#input_desc').value;
   const pesoProd = document.querySelector('#input_peso').value;
   const tipoProd = document.querySelector('#input_tipo').value;
@@ -387,7 +387,7 @@ document.addEventListener('click', async function (event) {
   }
   else if(event.target.classList.contains('update-button')) {
       document.getElementById('input_nome_atualizar').value = event.target.getAttribute('data-product-name');
-      document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco');
+      document.getElementById('input_preco_atualizar').value = event.target.getAttribute('data-product-preco').replace(/,/g, '.');
       document.getElementById('input_desc_atualizar').value = event.target.getAttribute('data-product-desc');
       document.getElementById('input_peso_atualizar').value = event.target.getAttribute('data-product-peso');
       document.getElementById('input_tipo_atualizar').value = event.target.getAttribute('data-product-tipo');
