@@ -210,7 +210,7 @@ salvarButton.addEventListener('click', async function(event) {
   .filter(checkbox => checkbox.checked)
   .map(checkbox => checkbox.value);
 
-  const restricaoProd = restricoesSelecionadas.join('<br>');
+  const restricaoProd = restricoesSelecionadas.join(', ');
 
     await codificarImagemEmBase64(inputImageElement)
     .then(response => {
@@ -242,9 +242,13 @@ salvarButton.addEventListener('click', async function(event) {
         document.getElementById('input_preco').value =  "";
         document.getElementById('input_desc').value = "";
         document.getElementById('input_peso').value = "";
-        document.getElementById('input_restricao').value = ""; 
         document.getElementById('opcao_padrao').selected = true;
         document.getElementById('input_image_cadastrar').value = "";
+        document.getElementById('show_image_cadastrar').src = ""; 
+        const checkboxes = document.querySelectorAll('#input_restricao input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
       })
       .catch(console.log)
       .finally(() => {
@@ -316,7 +320,7 @@ updateButton.addEventListener('click', async function(event) {
   .filter(checkbox => checkbox.checked)
   .map(checkbox => checkbox.value);
 
-  const restricaoProdAtualizar = restricoesSelecionadasAtualizar.join('<br>');
+  const restricaoProdAtualizar = restricoesSelecionadasAtualizar.join(', ');
 
     await codificarImagemEmBase64(inputImageElement)
     .then(response => {
@@ -397,7 +401,7 @@ document.addEventListener('click', async function (event) {
         document.getElementById('show_image_atualizar').src = `data:image/png;base64,${imagemCodificada}`;
       })
       
-      const restricoesSelecionadasAtualizar = event.target.getAttribute('data-product-restricao').split('<br>');
+      const restricoesSelecionadasAtualizar = event.target.getAttribute('data-product-restricao').split(', ');
       const restricaoCheckBoxesAtualizar = document.querySelectorAll('#input_restricao_atualizar input[type="checkbox"]');
   
       restricaoCheckBoxesAtualizar.forEach(checkbox => {
