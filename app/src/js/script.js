@@ -30,10 +30,10 @@ async function getProdutos(){
       newRow.innerHTML = `
         <th scope="row"><center>${id}</center></th>
         <td><center>${doc.data().nome}</center></td>
-        <td><center>${doc.data().preco}</center></td>
         <td><center>${doc.data().desc}</center></td>
-        <td><center>${doc.data().restricao}</center></td>
+        <td><center>${doc.data().preco}</center></td>
         <td><center>${doc.data().peso}</center></td>
+        <td><center>${doc.data().restricao}</center></td>
         <td><center>${doc.data().tipo}</center></td>
         <td>
           <center>
@@ -66,10 +66,10 @@ function atualizarTabela(produtos) {
     newRow.innerHTML = `
       <th scope="row"><center>${idInterno}<center></th>
       <td><center>${produto.nome}</center></td>
-      <td><center>${produto.preco}</center></td>
       <td><center>${produto.desc}</center></td>
-      <td><center>${produto.restricao}</center></td>
+      <td><center>${produto.preco}</center></td>
       <td><center>${produto.peso}</center></td>
+      <td><center>${produto.restricao}</center></td>
       <td><center>${produto.tipo}</center></td>
       <td>
       <center>
