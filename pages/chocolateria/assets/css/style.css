@@ -67,6 +67,8 @@ a:hover{
 /* CAPA DA CATEGORIA */
 .capa{
     width: 86vw;
+    border-radius: 5%;
+    margin-top: 30px;
 }
 
 /* CARDS */
