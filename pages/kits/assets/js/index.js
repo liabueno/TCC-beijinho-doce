@@ -22,7 +22,7 @@ getProdutos()
 async function getProdutos() {
   let listagemProdutos = document.getElementById('listagem-dos-produtos'); // ID PUXADO PARA ADICIONAR
 
-  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'kits')); // SEPARANDO CONFORME CATEGORIA
+  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'kits'), orderBy('dataCadastro', 'desc')); // SEPARANDO CONFORME CATEGORIA
   const querySnapshot = await getDocs(produtosListagem);
 
   // CRIANDO DINAMICAMENTE

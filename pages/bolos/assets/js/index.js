@@ -22,8 +22,10 @@ getProdutos()
 async function getProdutos() {
   let listagemProdutos = document.getElementById('listagem-dos-produtos'); // ID PUXADO PARA ADICIONAR
 
-  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'bolos')); // SEPARANDO CONFORME CATEGORIA
+  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'bolos'), orderBy('dataCadastro', 'desc')); // SEPARANDO CONFORME CATEGORIA
+  
   const querySnapshot = await getDocs(produtosListagem);
+  console.log('Documentos recuperados:', querySnapshot.docs.map(doc => doc.data()));
 
   // CRIANDO DINAMICAMENTE
   querySnapshot.forEach(async (doc) => {
