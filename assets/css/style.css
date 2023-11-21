@@ -70,8 +70,8 @@ a:hover{
 
 /* CAROUSEL */
 .carousel{
-    width: 86vw;
-    margin-top: 20px;
+    width: 70vw;
+    margin-top: 30px;
 }
 .carousel, .card-deck{
     padding: 0;
@@ -96,7 +96,7 @@ a:hover{
     color: #940050;
 }
 .card-deck{
-    width: 86vw;
+    width: 70vw;
 }
 .transition{
     transition: .5s;
@@ -114,7 +114,7 @@ a:hover{
     background-color: #ff83c9;
 }
 .logoApp{
-    width: 10%;
+    width: 6%;
     border-radius: 50%; 
     margin-top: 20px;
     margin-bottom: 20px;

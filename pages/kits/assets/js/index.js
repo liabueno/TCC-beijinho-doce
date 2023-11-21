@@ -48,7 +48,7 @@ async function getProdutos() {
 
         // FORMATANDO O PESO, CONVERTENDO PARA KG CASO PRECISO
         const pesoFormatado = doc.data().peso > 1000
-        ? `${(doc.data().peso / 1000).toFixed(2)}kg`
+        ? `${(doc.data().peso / 1000)}kg`.replace('.',',')
         : `${doc.data().peso}g`;
  
         // CRIAÇÃO DOS CARDS
