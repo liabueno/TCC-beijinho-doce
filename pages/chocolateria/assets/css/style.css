@@ -141,8 +141,8 @@ h2{
         display: flex;
     }
     .card{
-        min-width: 70vw;
-        max-width: 76vw;
+        min-width: 60vw;
+        max-width: 65vw;
         margin-top: 25px;
     }
 }
