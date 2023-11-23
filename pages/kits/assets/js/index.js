@@ -22,7 +22,7 @@ getProdutos()
 async function getProdutos() {
   let listagemProdutos = document.getElementById('listagem-dos-produtos'); // ID PUXADO PARA ADICIONAR
 
-  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'chocolateria'), orderBy('dataCadastro', 'desc')); // SEPARANDO CONFORME CATEGORIA
+  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'kits'), orderBy('dataCadastro', 'desc')); // SEPARANDO CONFORME CATEGORIA
   const querySnapshot = await getDocs(produtosListagem);
 
   // CRIANDO DINAMICAMENTE
@@ -78,7 +78,7 @@ async function getProdutos() {
             </div>
 
              <a target="_blank" class="peca-ja" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
-              <p class="encomenda"> Peça Já! </p>
+              <p> Peça Já! </p>
             </a>
 
           </div>

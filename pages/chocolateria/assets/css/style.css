@@ -161,13 +161,21 @@ h2{
         align-items: center;
         justify-content: center;
         display: flex;
+        min-width: 90vw;
+        max-width: 95vw;
     }
     .card{
-        min-width: 60vw;
-        max-width: 65vw;
+        min-width: 90vw;
+        max-width: 95vw;
         margin-top: 25px;
     }
     .logoApp{
         width: 20%;
+    }
+    .desc-produto{
+        margin-top: 20px;
+    }
+    .capa{
+        width: 95vw;
     }
 }
