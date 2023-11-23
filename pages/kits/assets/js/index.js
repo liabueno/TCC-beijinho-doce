@@ -22,7 +22,7 @@ getProdutos()
 async function getProdutos() {
   let listagemProdutos = document.getElementById('listagem-dos-produtos'); // ID PUXADO PARA ADICIONAR
 
-  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'kits'), orderBy('dataCadastro', 'desc')); // SEPARANDO CONFORME CATEGORIA
+  const produtosListagem = query(collectionProdutos, where('tipo', '==', 'chocolateria'), orderBy('dataCadastro', 'desc')); // SEPARANDO CONFORME CATEGORIA
   const querySnapshot = await getDocs(produtosListagem);
 
   // CRIANDO DINAMICAMENTE
@@ -46,6 +46,13 @@ async function getProdutos() {
           }
         }
 
+        let precoDoProduto = doc.data().preco
+        const responseNumeroTemVirgula = await verificaSeNumeroTemVirgula(precoDoProduto);
+
+        if(!responseNumeroTemVirgula){
+          precoDoProduto += ",00";
+        }
+
         // FORMATANDO O PESO, CONVERTENDO PARA KG CASO PRECISO
         const pesoFormatado = doc.data().peso > 1000
         ? `${(doc.data().peso / 1000)}kg`.replace('.',',')
@@ -59,16 +66,18 @@ async function getProdutos() {
             <img class="card-img-top" id="produtoImagem">
           </a>
           <div class="card-body">
-            <h2 class="card-title">${doc.data().nome}</h2>
-            <p>${doc.data().desc}</p>
-            <h1 class="preco">R$ ${doc.data().preco}</h1>
-            <h6>${pesoFormatado}</h6>
+            <div class="nome-e-desc">
+              <h2 class="card-title nome-produto">${doc.data().nome}</h2>
+              <p class="desc-produto">${doc.data().desc}</p>
+            </div>
+            <h1 class="preco">R$ ${precoDoProduto}</h1>
+            <h6 class="peso-produto">${pesoFormatado}</h6>
            
-            <div id="restricoes" class="align-text-right">
+            <div id="restricoes" class="align-text-right restricoes-produto">
               
             </div>
 
-             <a target="_blank" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
+             <a target="_blank" class="peca-ja" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
               <p class="encomenda"> Peça Já! </p>
             </a>
 
@@ -124,4 +133,23 @@ async function decodificarImagemBase64(imageBase64) {
       resolve({ error: true });
     }
   });
+}
+
+
+async function verificaSeNumeroTemVirgula(number){
+  return new Promise((resolve, reject) => {
+    try {
+
+      for(let i=0; i<number.length; i++){
+        if(number[i] == ","){
+          resolve(true);
+        }
+      }
+
+      resolve(false)
+      
+    } catch (err) {
+      console.error(err)
+    }
+  })
 }
