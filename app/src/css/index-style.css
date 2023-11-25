@@ -8,7 +8,9 @@ header{
 }
 
 img{
-    width: 45vw;
+    width: 43vw;
+    margin-bottom: 5vh;
+    margin-top: 6vh;
 }
 
 a:link{
@@ -22,7 +24,6 @@ a:link{
     height: 8vh;
     text-align: center;
     color: white;
-
 }
 
 .btn-inicio:hover{

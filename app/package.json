@@ -9,10 +9,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^26.2.2"
+    "electron": "^26.2.2",
+    "electron-builder": "^24.9.1"
   },
   "description": "",
   "dependencies": {
     "bootstrap-icons": "^1.11.1"
+  },
+  "build": {
+    "appId": "com.example.myapp",
+    "win": {
+      "icon": "src/image/icon.ico"
+    }
   }
 }

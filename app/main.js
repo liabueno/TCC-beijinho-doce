@@ -1,10 +1,17 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, nativeImage } = require('electron')
+
+const icon = nativeImage.createFromPath(`${app.getAppPath()}/src/image/logoApp.jpg`);
+
+if (app.dock) {
+  app.dock.setIcon(icon);
+}
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    icon,
     frame: false,
     resizable: true,
-    width: 1000,
+    width: 950,
     height: 650
   })
 

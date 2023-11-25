@@ -18,11 +18,15 @@ await getProdutos()
 
 // PEGAR OS PRODUTOS
 async function getProdutos(){
+  const loadingIndicator = document.getElementById('loadingIndicator');
+  loadingIndicator.style.display = 'flex';
+
   let id=0;
   let listagens = document.getElementById('tabela');
   listagens.innerHTML = "";
   const produtosListagem = query(collectionProdutos, orderBy("dataCadastro", "asc"));
-  const querySnapshot = await getDocs(produtosListagem);
+  try{
+    const querySnapshot = await getDocs(produtosListagem);
   querySnapshot.forEach((doc) => {
     if (doc.data().nome !== "") {
       id++;
@@ -49,8 +53,15 @@ async function getProdutos(){
         `;
 
       listagens.appendChild(newRow);
-    }
-  });
+      }
+    });
+  } catch (error) {
+    console.error('Erro ao obter produtos:', error);
+  } finally {
+    // Ocultar o indicador de carregamento após a conclusão da busca
+    loadingIndicator.style.display = 'none';
+  }
+  
 }
 
 // ATUALIZAR A LISTA
