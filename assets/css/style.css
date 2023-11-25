@@ -98,6 +98,9 @@ a:hover{
 .card-deck{
     width: 70vw;
 }
+.card-title{
+    font-weight: bold;
+}
 .transition{
     transition: .5s;
 }
@@ -140,8 +143,11 @@ a:hover{
         display: flex;
     }
     .card{
-        min-width: 70vw;
-        max-width: 76vw;
+        min-width: 85vw;
+        max-width: 85vw;
         margin-top: 25px;
+    }
+    .carousel{
+        width: 95vw;
     }
 }

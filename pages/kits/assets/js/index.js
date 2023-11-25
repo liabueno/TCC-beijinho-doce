@@ -70,16 +70,19 @@ async function getProdutos() {
               <h2 class="card-title nome-produto">${doc.data().nome}</h2>
               <p class="desc-produto">${doc.data().desc}</p>
             </div>
-            <h1 class="preco">R$ ${precoDoProduto}</h1>
-            <h6 class="peso-produto">${pesoFormatado}</h6>
-           
-            <div id="restricoes" class="align-text-right restricoes-produto">
-              
-            </div>
+            
+            <div class="demais-infos">
+              <h1 class="preco">R$ ${precoDoProduto}</h1>
+              <h6 class="peso-produto">${pesoFormatado}</h6>
+            
+              <div id="restricoes" class="align-text-right restricoes-produto">
+                
+              </div>
 
-             <a target="_blank" class="peca-ja" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
-              <p> Peça Já! </p>
-            </a>
+              <a target="_blank" class="peca-ja" href="https://api.whatsapp.com/send/?phone=5515998430479&text=Ol%C3%A1%2C+gostaria+de+pedir+o+seguinte+produto: ${nomeFormatadoWhats}">
+                <p class="encomenda"> Peça Já! </p>
+              </a>
+            </div>
 
           </div>
         `; // CONSTRUÇÃO HTML

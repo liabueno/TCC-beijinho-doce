@@ -72,51 +72,52 @@ a:hover{
 
 /* CARDS */
 .card-deck{
-    width: 70vw;
+    width: 76vw;
     height: auto;
 }
 .card{
-    min-width: 21.3vw ;
-    max-width: 21.3vw ;
+    min-width: 30%;   
+    max-width: 30%; 
     margin-top: 20px;
+    height: 100vh !important;
 }
 .card-title{
     font-size: 22pt;
 }
 .nome-produto{
-    min-height: 7vh;
-    max-height: 7vh;
-    font-size: 2.9rem;
-}
-.nome-e-desc{
-    min-height: 22vh;
-    max-height: 22vh;
-    margin-bottom: 2vh;
+    min-height: 2em;
+    max-height: 2em;
+    font-weight: bold;
 }
 .desc-produto{
-    min-height: 15vh;
-    max-height: 15vh;
-    font-size: 1.5rem;
-}
-.peso-produto{
-    font-size: 1.4rem;
+    min-height: 5em;
+    max-height: 5em;
 }
 .preco{
+    font-size: 1.4em;
     color: #ff83c9;
+    font-weight: bold;
 }
-.restricoes-produto{
-    min-height: 8vh;
-    max-height: 8vh;
-    font-size: 1.3rem;
+.peso-produto{
+    font-style: italic;
+}
+.demais-infos{
+    min-height: 65vh;
+    max-height: 65vh;
+    align-items: end;
+}
+#restricoes{
+    min-height: 4.2em;
+    max-height: 4.2em;
 }
 .peca-ja{
     display: flex;
     align-items: end;
     justify-content: center;
-    color: #940050;
+    font-weight: bold;
 }
-.peca-ja:hover{
-    color: #ff83c9;
+.encomenda{
+    color: #940050;
 }
 .transition{
     transition: .5s;
@@ -125,14 +126,14 @@ a:hover{
     transform: scale(1.03, 1.03);
 }
 p{
-    font-size: 1.2em;
+    font-size: 0.9em !important;
 }
 h3{
     font-size: 0.8em;
     opacity: 0.9;
 }
 h2{
-    font-size: 1.5em;
+    font-size: 1.4em !important;
 }
 
 /* ANTES DO FOOTER */
@@ -168,25 +169,24 @@ h2{
         align-items: center;
         justify-content: center;
         display: flex;
-        min-width: 90vw;
-        max-width: 95vw;
+        min-width: 85vw;
+        max-width: 85vw;
     }
     .card{
-        min-width: 90vw;
-        max-width: 95vw;
+        min-width: 85vw;
+        max-width: 85vw;
         margin-top: 25px;
+    }
+    .card-img-top{
+        height: 70vw;
     }
     .logoApp{
         width: 20%;
     }
     .desc-produto{
         margin-top: 20px;
-        font-size: 1.4rem;
     }
     .capa{
         width: 95vw;
-    }
-    .nome-produto{
-        font-size: 2.4rem;
     }
 }
