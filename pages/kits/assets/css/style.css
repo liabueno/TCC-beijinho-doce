@@ -169,12 +169,12 @@ h2{
         align-items: center;
         justify-content: center;
         display: flex;
-        min-width: 85vw;
-        max-width: 85vw;
+        min-width: 80vw;
+        max-width: 80vw;
     }
     .card{
-        min-width: 85vw;
-        max-width: 85vw;
+        min-width: 80vw;
+        max-width: 80vw;
         margin-top: 25px;
     }
     .card-img-top{
