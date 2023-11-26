@@ -138,7 +138,7 @@ async function decodificarImagemBase64(imageBase64) {
   });
 }
 
-
+// FUNÇÃO PARA VERIFICAR SE O PRECO TEM VÍRGULA
 async function verificaSeNumeroTemVirgula(number){
   return new Promise((resolve, reject) => {
     try {
