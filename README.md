@@ -15,7 +15,6 @@ npm start -> para rodar
 PARA CRIAR O SETUP:
 Já na pasta app
 Digite no terminal:
-npm install electron-builder --save-dev -> para instalar a biblioteca que construirá o app
 npx electron-builder --win -> para construir o app
-Com a pasta dist criada, acesse pelo explorador de arquivos 
-Localize o arquivo nomeado "app Setup 1.0.0" e o execute
+Com a pasta dist criada, acesse-a pelo explorador de arquivos 
+Localize o arquivo "app Setup 1.0.0" e o execute
