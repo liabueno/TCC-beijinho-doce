@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <!-- IMPORT DO BOOTSTRAP CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- CSS CUSTOMIZADO-->
+    <link rel="stylesheet" type="text/css" href="./src/css/principal-style.css">
+</head>
+<body>
+  <!-- CABEÇALHO -->
+    <header>
+      <!-- VOLTAR -->
+      <a href="./index.html"><button type="button" id="botao__voltar" class="btn btn-primary"><img src="./src/image/voltar.png" alt="ícone de voltar" class="voltar"></button></a>        
+
+      <!-- RESIZABLE -->
+      <button id="alternarTelaCheia" class="btn-resizable">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-square square" viewBox="0 0 16 16">
+            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+          </svg>
+      </button>
+
+      <!-- FECHAR -->
+      <button class="btn-fechar" onclick="fecharJanela()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+          </svg>
+      </button>
+    </header>
+    
+    <!-- BARRA DE PESQUISA -->
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <form>
+                <div class="mb-3 mt-3">
+                  <input id="input_produto" class="form-control pesquisar" aria-describedby="emailHelp" placeholder="Pesquisar Produto">
+                </div>
+            </form>
+
+            <!-- LUPA -->
+            <button type="button" id="botao__pesquisar" class="btn btn-primary"><img src="./src/image/pesquisar.png" alt="ícone de pesquisa"></button>        
+        </div>
+    </div>
+
+    <!-- BOTÃO CADASTRAR -> ÍCONE DE MAIS -->
+    <div class="row">
+        <div class="col-12 text-end mt-3">
+            <button type="button"  id="botao__cadastrar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg mais" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL CADASTRAR -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Produto</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-2 mt-2">
+                      <label class="mb-2">Nome</label>
+                      <input type="text" id="input_nome" class="form-control mb-3"  placeholder="Informe o nome" required>
+                    </div>
+                    <div class="mb-2 mt-2">
+                      <label class="mb-2">Descrição</label>
+                      <textarea id="input_desc" class="form-control mb-3 placeholder="Informe a descrição" required></textarea>
+                    </div>
+                    <div class="mb-2 mt-2">
+                      <label class="mb-2">Preço</label>
+                      <input type="number" id="input_preco" class="form-control mb-3"  placeholder="Informe o preço" required>
+                    </div>
+                    <div class="mb-2 mt-2">
+                      <label class="mb-2">Peso em gramas</label>
+                      <input type="text" id="input_peso" class="form-control" placeholder="Informe o peso em gramas" required>
+                    </div>
+                    <div class=" mb-3 mt-3 form-check form-check-inline" id="input_restricao">
+                      <label class="mb-2 restricao">Restrições</label>
+                      <div>
+                        <input class="form-check-input form-control" type="checkbox" id="inlineCheckbox1" value="Contém Glúten">
+                        <label class="form-check-label" for="inlineCheckbox1">Contém Glúten</label>
+                      </div>
+                      <div>
+                        <input class="form-check-input form-control" type="checkbox" id="inlineCheckbox1" value="Contém Lactose">
+                        <label class="form-check-label" for="inlineCheckbox1">Contém Lactose</label>
+                      </div>  
+                      <div>
+                        <input class="form-check-input form-control" type="checkbox" id="inlineCheckbox1" value="Contém Amendoim">
+                        <label class="form-check-label" for="inlineCheckbox1">Contém Amendoim</label>
+                      </div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>Categoria</label>
+                        <select id="input_tipo" class="categoria" name="tipo">
+                            <option value="bolos">Bolos</option>
+                            <option value="chocolateria">Chocolateria</option>
+                            <option value="kits">Kits</option>
+                            <option id="opcao_padrao" selected>Selecione uma opção</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 mt-4">
+                      <label class="mb-2">Imagem</label>
+                      <div class="row">
+                        <div class="col-10">
+                          <input type="file" accept="image/*" id="input_image_cadastrar" class="form-control input_image" placeholder="Insira a imagem" required>
+                        </div>
+                        <div class="col-2">
+                          <button class="x-button">
+                            <img src="./src/image/x.svg" id="x_imagem_cadastrar" class="x" alt="Ícone de X">
+                          </button>
+                        </div>
+                      </div>
+                      <center>
+                        <img src="" id="show_image_cadastrar">
+                      </center>
+                  </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="fechar">Fechar</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="salvar">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL ATUALIZAR -->
+      <div class="modal fade" id="atualizarModal" tabindex="-1" aria-labelledby="atualizarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="atualizarModalLabel">Atualizar Produto<span id="show_id_atualizar" data-product-id=""></span></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-2 mt-2">
+                            <label class="mb-2">Nome</label>
+                            <input type="text" id="input_nome_atualizar" class="form-control mb-3" placeholder="Informe o nome">
+                        </div>
+                        <div class="mb-2 mt-2">
+                            <label class="mb-2">Descrição</label>
+                            <textarea id="input_desc_atualizar" class="form-control mb-3 placeholder="Informe a descrição" required></textarea>
+                          </div>
+                        <div class="mb-2 mt-2">
+                          <label class="mb-2">Preço</label>
+                          <input type="number" id="input_preco_atualizar" class="form-control mb-3" placeholder="Informe o preço">
+                        </div>
+                        <div class="mb-2 mt-2">
+                          <label class="mb-2">Peso em gramas</label>
+                          <input type="text" id="input_peso_atualizar" class="form-control" placeholder="Informe o peso em gramas">
+                       </div>
+                        <div class="mb-3 mt-3 form-check form-check-inline" id="input_restricao_atualizar">
+                          <label class="mb-2 restricao">Restrições</label>
+                          <div>
+                            <input class="form-check-input form-control" type="checkbox" id="inlineCheckbox1" value="Contém Glúten">
+                            <label class="form-check-label" for="inlineCheckbox1">Contém Glúten</label>
+                          </div>
+                          <div>
+                            <input class="form-check-input form-control" type="checkbox" id="inlineCheckbox1" value="Contém Lactose">
+                            <label class="form-check-label" for="inlineCheckbox1">Contém Lactose</label>
+                          </div>  
+                          <div>
+                            <input class="form-check-input form-control" type="checkbox" id="inlineCheckbox1" value="Contém Amendoim">
+                            <label class="form-check-label" for="inlineCheckbox1">Contém Amendoim</label>
+                          </div>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label>Categoria</label>
+                            <select id="input_tipo_atualizar" class="categoria" name="tipo">
+                                <option value="bolos">Bolos</option>
+                                <option value="chocolateria">Chocolateria</option>
+                                <option value="kits">Kits</option>
+                                <option selected>Selecione uma opção</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 mt-4">
+                            <label class="mb-2">Imagem</label>
+                            <div class="row">
+                              <div class="col-10">
+                                  <input type="file" accept="image/*" id="input_image_atualizar" class="form-control input_image" placeholder="Insira a imagem" required>
+                              </div>
+                              <div class="col-2">
+                                <button class="x-button">
+                                  <img src="./src/image/x.svg" id="x_imagem_atualizar" class="x" alt="Ícone de X">
+                                </button>
+                              </div>
+                            </div>
+                            <center>
+                              <img src="" id="show_image_atualizar">
+                            </center>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="fechar_atualizar">Fechar</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="atualizar">Atualizar</button>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    
+
+      <!-- TABELA -->
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr class="atributos">
+            <th scope="col"><center>Id</center></th>
+            <th scope="col"><center>Nome</center></th>
+            <th scope="col"><center>Descrição</center></th>
+            <th scope="col"><center>Preço</center></th>
+            <th scope="col"><center>Peso(g)</center></th>
+            <th scope="col"><center>Restrições</center></th>
+            <th scope="col"><center>Categoria</center></th>
+            <th scope="col"><center>Atualizar</center></th>
+            <th scope="col"><center>Deletar</center></th>
+          </tr>
+        </thead>
+        <tbody id="tabela">
+        </tbody>
+      </table>
+
+    <!-- CARREGANDO -->
+    <div id="loadingIndicator" class="loading-container">
+      <div class="loading"></div>
+      <img src="./src/image/loading.gif" alt="Carregando">
+    </div>    
+      
+    <!-- SCRIPT DAS OPERAÇÕES COM O BD -->
+    <script type="module" src="./src/js/script.js"></script>
+    <!-- SCRIPT DOS BOTÕES DO HEADER REFERENTES A TELA -->
+    <script src="./src/js/tela.js"></script>
+    <!-- IMPORT DO BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+</body>
+</html>

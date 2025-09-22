@@ -1,0 +1,190 @@
+body{
+    margin: 0;
+    padding:0;
+    border-spacing: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #f5cad0;
+}
+
+/* HEADER */
+
+header{
+    background-color: #aa386f;
+    height: 9vh;
+}
+
+.btn-fechar {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    height: 5vh;
+    width: 4vw;
+    margin-top: 10px;
+    margin-right: 5px;
+    display: inline-block; 
+}
+
+.btn-resizable {
+    background: none;
+    border: none;
+    position: absolute;
+    height: 5vh;
+    width: 4vw;
+    margin-top: 10px;
+    margin-right: 5px;
+    display: inline-block; 
+    right: 0;
+    margin-right: 50px;
+}
+
+#botao__voltar, .voltar{
+    height: 3vh;
+    width: 2vw;
+    margin-top: 5px;
+    margin-left: 5px;
+    left: 0;
+    position: absolute;
+}
+
+/* ÍCONE DE LUPA E X DOS MODAIS */
+
+#botao__pesquisar, #botao__voltar, .x-button{
+    border: none;
+    background: none;
+}
+
+#botao__pesquisar{
+    margin-top: 35px;
+}
+
+/* BARRA DE PESQUISA */
+
+#input_produto{
+    margin-top: 45px;
+    width: 60vw;
+    height: 7.5vh;
+}
+
+
+/* ÍCONE DE MAIS */ 
+
+#botao__cadastrar, .mais{
+    margin-bottom: 8px;
+}
+
+#botao__cadastrar{
+    background-color: #d6808cef;
+    border: #d6808cef;
+    height: 5vh;
+    margin-right: 20px;
+}
+
+.mais{
+    width: 2.3vw;
+    height: 3.3vh;
+}
+
+/* LOADING */
+
+.loading-container {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh; 
+    margin-top: 7vh;
+}
+
+/* CHECKBOX DE RESTRIÇÕES */
+
+.restricao{
+    margin-left: -25px;
+}
+
+.form-check-label{
+    margin-left: 15px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: rgb(255, 107, 107);
+    border: rgb(255, 107, 107);
+}
+
+/* SELEÇÃO DA CATEGORIA */
+
+.categoria{
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+/* ÍCONE DE LIXEIRA -> DELETAR */
+
+.delete-button{
+    border: 1px solid #AAA5ED;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 6vh;
+}
+
+.delete-button:hover{
+    border: 1px solid #AAA5ED;
+    background-color: #AAA5ED;
+}
+
+/* ÍCONE DE LÁPIS */
+
+.update-button{
+    border: 1px solid #87ceeb;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 6vh;
+}
+
+.update-button:hover{
+    border: 1px solid #87ceeb;
+    background-color: #87ceeb;
+}
+
+/* ID DO MODAL DE ATUALIZAR */
+
+#show_id_atualizar{
+    display: none;
+}
+
+/* BOTÕES DO MODAL DE CADASTRAR / ATUALIZAR */
+
+#salvar{
+    background-color: rgb(92, 196, 92);
+    border: rgb(92, 196, 92);
+}
+
+#fechar, #fechar_atualizar{
+    background-color: #9e9d9d;
+    border: #9e9d9d;
+}
+
+#atualizar{
+    background-color: #4aa7cc;
+    border: #4aa7cc;
+}
+
+/* IMAGEM APARECENDO NO CADASTRAR E ATUALIZAR */
+
+#show_image_cadastrar, #show_image_atualizar{
+    height: 20vh;
+    margin-top: 25px;
+}
+
+/* X DE APAGAR IMAGEM DO CADASTRAR E ATUALIZAR  */
+
+.x-button{
+    margin-top: 5px;
+}
+
+.x{
+    height: 5vh;
+}

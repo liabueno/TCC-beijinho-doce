@@ -1,0 +1,46 @@
+body{
+    background-color: #FFDAF9;
+}
+
+header{
+    background-color: #aa386f;
+    height: 9vh;
+}
+
+img{
+    width: 43vw;
+    margin-bottom: 5vh;
+    margin-top: 6vh;
+}
+
+a:link{
+    color: gray;
+}
+
+.btn-inicio{
+    background-color: #aa386f;
+    border: #aa386f;
+    width: 20vw;
+    height: 8vh;
+    text-align: center;
+    color: white;
+}
+
+.btn-inicio:hover{
+    background-color: rgb(238, 124, 145);
+    border: rgb(238, 124, 145);
+    color: white;
+
+}
+
+.btn-fechar {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    height: 5vh;
+    width: 4vw;
+    margin-top: 10px;
+    margin-right: 5px;
+    display: inline-block; 
+}
