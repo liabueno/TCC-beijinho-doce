@@ -1,0 +1,192 @@
+/* KITS */
+
+body{
+    background-color: #FFB7E4;
+    font-family: 'Fredoka', sans-serif;
+}
+
+/* HEADER */
+a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 18pt;
+}
+a:hover{
+    color: #220A40;
+    text-decoration: none;
+}
+.menu, .nome{
+    font-size: 16.5pt;
+}
+.menu:hover{
+    font-size: 17pt;
+}
+.menu_icone{
+    width: 30px;
+    height: 30px;
+}
+.menu_icone:hover{
+    width: 31.5px;
+    height: 31.5px;
+}
+.menu{
+    margin-right: 2px;
+}
+.cabec{
+    display: flex;
+    background-color: #ff83c9;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.nome{
+    color: white;
+}
+.menu_estendido{
+    width: 4px;
+}
+.letra_categoria{
+    font-size: large;
+}
+.logo{
+    width: 20%;
+    border-radius: 50%;
+    margin: 5px;
+}
+.brand{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.links{
+    display: flex;
+    flex-direction: row;
+}
+
+/* CAPA DA CATEGORIA */
+.capa{
+    width: 70vw;
+    margin-top: 50px;
+}
+
+/* CARDS */
+.card-deck{
+    width: 76vw;
+    height: auto;
+}
+.card{
+    min-width: 30%;   
+    max-width: 30%; 
+    margin-top: 20px;
+    height: 100vh !important;
+}
+.card-title{
+    font-size: 22pt;
+}
+.nome-produto{
+    min-height: 2em;
+    max-height: 2em;
+    font-weight: bold;
+}
+.desc-produto{
+    min-height: 5em;
+    max-height: 5em;
+}
+.preco{
+    font-size: 1.4em;
+    color: #ff83c9;
+    font-weight: bold;
+}
+.peso-produto{
+    font-style: italic;
+}
+.demais-infos{
+    min-height: 65vh;
+    max-height: 65vh;
+    align-items: end;
+}
+#restricoes{
+    min-height: 4.2em;
+    max-height: 4.2em;
+}
+.peca-ja{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    font-weight: bold;
+}
+.encomenda{
+    color: #940050;
+}
+.transition{
+    transition: .5s;
+}
+.transition:hover{
+    transform: scale(1.03, 1.03);
+}
+p{
+    font-size: 0.9em !important;
+}
+h3{
+    font-size: 0.8em;
+    opacity: 0.9;
+}
+h2{
+    font-size: 1.4em !important;
+}
+
+/* ANTES DO FOOTER */
+.contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: #ff83c9;
+}
+
+/* FOOTER */
+.rodape{
+    background-color: #940050;
+    padding: 5px;
+}
+.logoApp{
+    width: 6%;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.nomeApp{
+    color: white;
+}
+.rodape h4{
+    font-size: medium;
+}
+
+/* TELAS PEQUENAS */
+@media (max-width: 768px) {
+    .card-deck {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        min-width: 80vw;
+        max-width: 80vw;
+    }
+    .card{
+        min-width: 80vw;
+        max-width: 80vw;
+        margin-top: 25px;
+    }
+    .card-img-top{
+        height: 70vw;
+    }
+    .logoApp{
+        width: 20%;
+    }
+    .desc-produto{
+        margin-top: 20px;
+    }
+    .capa{
+        width: 95vw;
+    }
+}

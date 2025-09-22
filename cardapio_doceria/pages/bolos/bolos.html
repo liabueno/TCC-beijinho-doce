@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio de Bolos</title>
+    <link rel="shortcut icon" href="../../assets/img/icon.ico">
+
+    <!-- Fonte: Fredoka -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <div class="container-fluid">
+      <!-- Header -->
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light w-100 cabec">
+          <a class="navbar-brand transition" href="../../index.html">
+            <img src="../../assets/img/logo.png" class="logo" >
+            <span class="nome transition">Delícias da Déia</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link menu" href="../../index.html">Início</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle menu" href="#" id="navbarDropdown" role"button" data-toggle="dropdown">
+                  Produtos
+                </a>
+              <center>
+                <div class="dropdown-menu menu_estendido" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item letra_categoria" href="./bolos.html">Bolos</a>
+                  <a class="dropdown-item letra_categoria" href="../chocolateria/chocolateria.html">Chocolateria</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item letra_categoria" href="../kits/kits.html">Kits</a>
+                </div>
+              </center>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" target="_blank" href="https://api.whatsapp.com/send/?phone=5515997657412&text=Ol%C3%A1%2C+vim+pelo+card%C3%A1pio+digital">
+                  <img src="../../assets/img/icone_whats.svg" class="menu_icone" alt="Ícone do WhatsApp" >
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" target="_blank" href="https://www.instagram.com/doceria_delicias.da.deia/?igshid=MzRlODBiNWFlZA%3D%3D">
+                  <img src="../../assets/img/icone_insta.svg" class="menu_icone"  alt="Ícone do Instagram" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+        <br>
+
+        <!-- Bolos -->
+        <div class="row">
+          <div class="col-12 bolos">
+            <center>
+              <img src="./assets/img/banner.png" class="img-fluid capa rounded-5">
+            </center>
+          </div>
+        </div>
+
+      <br>
+
+        <!-- Cards -->
+        <div class="row">
+          <div class="col-11 card-deck m-auto d-flex justify-content-start" id="listagem-dos-produtos">
+                        <!-- Cards serão criados dinamicamente aqui -->
+          </div>
+        </div>
+
+          <!-- contato -->
+          <div class="row mt-5">
+            <div class="col-12 contato">
+              <a  target="_blank" href="https://api.whatsapp.com/send/?phone=5515997657412&text=Ol%C3%A1%2C+gostaria+de+fazer+um+pedido,+vim+pelo+card%C3%A1pio+digital">
+                Adoce seu dia! Clique aqui
+              </a>
+            </div>
+          </div>
+        
+          <!-- footer -->
+          <div class="row">
+            <div class="col-12 d-flex align-items-center justify-content-center text-center rodape">
+                  <img src="../../assets/img/logoApp.jpg" class="logoApp" >
+                  <span class="nomeApp ml-3">Aplicação Beijinho Doce por Code District © Todos os direitos reservados</span>
+              </div>
+            </div>
+          </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module" src="./assets/js/index.js"></script>
+     <!-- Bootstrap -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
