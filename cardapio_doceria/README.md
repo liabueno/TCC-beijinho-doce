@@ -5,4 +5,4 @@ Os produtos são criados dinamicamente.
 
 Para acessar:
 
-Coloque a pasta cardapio_doceria na pasta htodocs com o apache ligado no xampp.
+Coloque a pasta cardapio_doceria na pasta htdocs com o apache ligado no xampp.
